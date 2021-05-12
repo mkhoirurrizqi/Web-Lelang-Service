@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+/* Start Login page */
+.wrap {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+}
+.content-login-page {
+  border: #0c6146 1px solid;
+  background-color: #0c6146;
+  width: 800px;
+  border-radius: 10px;
+}
+.content-login-page .putih {
+  background-color: #fff;
+  margin-left: 30%;
+  padding: 100px 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.content-login-page .putih .header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.content-login-page .putih .header h1 {
+  font-size: 28px;
+}
+.content-login-page .putih .input-wrap {
+  margin: 0 20px 50px 20px;
+}
+.content-login-page .putih .input-wrap input {
+  border-radius: 30px;
+}
+.content-login-page .putih .btn-wrap {
+  justify-content: center;
+  display: flex;
+}
+.content-login-page .putih .btn-wrap .btn {
+  background-color: #0c6146;
+  border-radius: 30px;
+  font-weight: bold;
+  border: #0c6146 1px solid;
+  width: 200px;
+}
+.content-login-page .putih .btn-wrap .btn:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+/* End Login page */
