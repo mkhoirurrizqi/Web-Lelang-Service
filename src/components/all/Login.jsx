@@ -15,10 +15,10 @@ const Login = () => {
           <form action="">
             <div className="input-wrap">
               <div class="mb-3">
-                <input type="email" className="form-control" id="exampleInputPassword1" placeholder="Email" />
+                <input type="email" className="form-control" id="email" placeholder="Email" />
               </div>
               <div class="mb-3">
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                <input type="password" className="form-control" id="password" placeholder="Password" />
               </div>
             </div>
             <div className="btn-wrap">
