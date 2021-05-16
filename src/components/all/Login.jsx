@@ -22,7 +22,7 @@ const Login = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="" className="login-btn">
+              <a href="/active" className="login-btn">
                 <button type="button" class="btn btn-primary">
                   Login
                 </button>

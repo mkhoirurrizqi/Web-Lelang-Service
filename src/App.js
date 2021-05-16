@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Login from "./components/all/Login";
+import Router from "./Routers";
 
 function App() {
-  return <Login />;
+  return <Router />;
 }
 
 export default App;
