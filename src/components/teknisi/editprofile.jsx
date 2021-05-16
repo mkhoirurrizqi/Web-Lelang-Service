@@ -39,7 +39,7 @@ const EditProfile = () => {
             </div>
             <div className="btn-wrap">
               <a href="/profile" className="update-btn">
-                <button type="button" class="btn btn-primary">
+                <button type="button" className="btn btn-primary">
                   Update
                 </button>
               </a>

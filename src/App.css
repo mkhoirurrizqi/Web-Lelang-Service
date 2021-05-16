@@ -189,3 +189,45 @@
   padding-left: 150px;
 }
 /* End Navbar */
+
+/* Start Profile Page */
+.profile-page {
+  text-align: center;
+}
+.profile-page .prof-icon {
+  margin-top: 120px;
+}
+.profile-page .icon {
+  color: #0c6146;
+}
+.profile-page .bio .name {
+  justify-content: center;
+  margin-top: 20px;
+  display: flex;
+}
+.profile-page .bio .name h1 {
+  font-size: 50px;
+}
+.profile-page .bio .other {
+  margin-top: 20px;
+}
+.profile-page .bio .other p {
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+.profile-page .btn-wrap {
+  margin-top: 60px;
+}
+.profile-page .btn-wrap .btn {
+  background-color: #0c6146;
+  border-radius: 30px;
+  font-weight: bold;
+  border: #0c6146 1px solid;
+  width: 200px;
+}
+.profile-page .btn-wrap .btn:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+/* End Profile Page */
