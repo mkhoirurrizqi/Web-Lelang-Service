@@ -4,6 +4,8 @@ import Login from "./components/all/Login";
 import HomeActive from "./components/teknisi/homepageactive";
 import HomeDone from "./components/teknisi/homepagedone";
 import HomeProgress from "./components/teknisi/homepageprogress";
+import Profile from "./components/teknisi/profile";
+import EditProfile from "./components/teknisi/editprofile";
 
 const Routers = () => {
   return (
@@ -21,8 +23,11 @@ const Routers = () => {
         <Route path="/done">
           <HomeDone />
         </Route>
-        <Route path="/edit-profile">
-          <HomeActive />
+        <Route path="/profile/edit">
+          <EditProfile />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </Router>
