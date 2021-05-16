@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../App.css";
+// import "public/";
 
 const EditProfile = () => {
   const [email, setEmail] = useState("");
@@ -8,8 +8,8 @@ const EditProfile = () => {
     <div className="wrap">
       <div className="content-update-page">
         <div className="cancel-side col-4">
-          <a href="">
-            <img src="img\icons8_cancel_127px_2.png" alt="" />
+          <a href="/profile">
+            <img src="/img/icons8_cancel_127px_2.png" alt="cancel-button" />
           </a>
         </div>
         <div className="putih col-8">
@@ -38,7 +38,7 @@ const EditProfile = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="" className="update-btn">
+              <a href="/profile" className="update-btn">
                 <button type="button" class="btn btn-primary">
                   Update
                 </button>
