@@ -47,7 +47,7 @@ const Routers = () => {
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route path="/admin/project-active">
+        <Route exact path="/admin/project-active">
           <ProjectActive />
         </Route>
         <Route path="/admin/project-done">
@@ -59,19 +59,19 @@ const Routers = () => {
         <Route path="/admin/project-active/bid">
           <Bid />
         </Route>
-        <Route path="/admin/project-active/create-project">
+        <Route path="/admin/project-active/create">
           <CreateProject />
         </Route>
-        <Route path="/admin/project-active/edit-project">
+        <Route path="/admin/project-active/edit">
           <EditProject />
         </Route>
-        <Route path="/admin/user-page">
+        <Route exact path="/admin/user-page">
           <UserPage />
         </Route>
-        <Route path="/admin/user-page/create-user">
+        <Route path="/admin/user-page/create">
           <CreateUser />
         </Route>
-        <Route path="/admin/user-page/edit-user">
+        <Route path="/admin/user-page/edit">
           <EditUser />
         </Route>
         {/* End Admin */}

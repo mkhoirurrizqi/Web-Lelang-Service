@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "public/";
 
 const EditProfile = () => {
   const [email, setEmail] = useState("");
