@@ -119,6 +119,87 @@
 }
 /* End Navbar */
 
+/* Start Active Project Page */
+.container .content-active-project {
+  margin-top: 20px;
+}
+.container .content-active-project .btn-create {
+  background-color: #0c6146;
+  border: #0c6146 1px solid;
+}
+.container .content-active-project .btn-create:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+.container .content-active-project .row {
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.container .content-active-project .row .card {
+  width: 18rem;
+  border: #0c6146 1px solid;
+}
+.container .content-active-project .row .card:hover {
+  box-shadow: 1px 1px #000;
+  background-color: #0c6146;
+  color: #fff;
+}
+.container .content-active-project .row .card .list-group .list-group-item {
+  border: #0c6146 1px solid;
+}
+.container .content-active-project .row .card .card-btn {
+  text-align: center;
+}
+/* End Active Project Page */
+
+/* Start On Progress Project Page */
+.container .content-onprogress-project {
+  margin-top: 20px;
+}
+.container .content-onprogress-project .row {
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.container .content-onprogress-project .row .card {
+  width: 18rem;
+  border: #0c6146 1px solid;
+}
+.container .content-onprogress-project .row .card:hover {
+  box-shadow: 1px 1px #000;
+  background-color: #0c6146;
+  color: #fff;
+}
+.container .content-onprogress-project .row .card .list-group .list-group-item {
+  border: #0c6146 1px solid;
+}
+.container .content-onprogress-project .row .card .card-btn {
+  text-align: center;
+}
+/* End On Progress Project Page */
+
+/* Start Done Project Page */
+.container .content-done-project {
+  margin-top: 20px;
+}
+.container .content-done-project .row {
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.container .content-done-project .row .card {
+  width: 18rem;
+  border: #0c6146 1px solid;
+}
+.container .content-done-project .row .card:hover {
+  box-shadow: 1px 1px #000;
+  background-color: #0c6146;
+  color: #fff;
+}
+.container .content-done-project .row .card .list-group .list-group-item {
+  border: #0c6146 1px solid;
+}
+/* End Done Project Page */
+
 /* --------------------------------------------------------------------------------- TEKNISI --------------------------------------------------------------------------------- */
 
 /* Start Edit Profile Page */

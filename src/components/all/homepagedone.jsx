@@ -5,7 +5,92 @@ const HomeDone = () => {
   return (
     <div>
       <Navbar />
-      <p>Done</p>
+      <div className="container">
+        <div className="content-done-project">
+          <div className="row">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+          </div>
+          <div className="row">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item project-initial-price">35000</li>
+                <li className="list-group-item project-fixed-price">40000</li>
+                <li className="list-group-item project-location">Lampung Selatan</li>
+                <li className="list-group-item project-hardware-type">Laptop</li>
+                <li className="list-group-item project-technisian">Rizqi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
