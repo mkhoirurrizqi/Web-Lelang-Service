@@ -378,3 +378,179 @@
   border: #0c6146 1px solid;
 }
 /* End Create User Page */
+
+/* Start Create Project Page */
+.wrap {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+}
+.content-create-project-page {
+  background-color: #0c6146;
+  width: 800px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.content-create-project-page .cancel-side {
+  background-color: #0c6146;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.content-create-project-page .cancel-side img:hover {
+  padding-bottom: 20px;
+}
+.content-create-project-page .putih {
+  background-color: #fff;
+  padding: 30px 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.content-create-project-page .putih .header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.content-create-project-page .putih .header h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+.content-create-project-page .putih .input-wrap {
+  margin: 0 20px 20px 20px;
+}
+.content-create-project-page .putih .input-wrap .input-group .input-group-text {
+  border: #0c6146 1px solid;
+  background-color: #0c6146;
+  color: #fff;
+}
+.content-create-project-page .putih .input-wrap .input-group #role-dropdown {
+  border: #0c6146 1px solid;
+}
+.content-create-project-page .putih .input-wrap .input-group #role-dropdown:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 97, 70, 0.25);
+}
+.content-create-project-page .putih .input-wrap input {
+  border-radius: 30px;
+  border: #0c6146 1px solid;
+}
+.content-create-project-page .putih .input-wrap input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 97, 70, 0.25);
+}
+.content-create-project-page .putih .btn-wrap {
+  justify-content: center;
+  display: flex;
+}
+.content-create-project-page .putih .btn-wrap .btn {
+  background-color: #0c6146;
+  border-radius: 30px;
+  font-weight: bold;
+  border: #0c6146 1px solid;
+  width: 200px;
+}
+.content-create-project-page .putih .btn-wrap .btn:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+/* End Create Project Page */
+
+/* Start Edit Project Page */
+.wrap {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+}
+.content-edit-project-page {
+  background-color: #0c6146;
+  width: 800px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.content-edit-project-page .cancel-side {
+  background-color: #0c6146;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.content-edit-project-page .cancel-side img:hover {
+  padding-bottom: 20px;
+}
+.content-edit-project-page .putih {
+  background-color: #fff;
+  padding: 30px 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.content-edit-project-page .putih .header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.content-edit-project-page .putih .header h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+.content-edit-project-page .putih .input-wrap {
+  margin: 0 20px 20px 20px;
+}
+.content-edit-project-page .putih .input-wrap .input-group .input-group-text {
+  border: #0c6146 1px solid;
+  background-color: #0c6146;
+  color: #fff;
+}
+.content-edit-project-page .putih .input-wrap .input-group #role-dropdown {
+  border: #0c6146 1px solid;
+}
+.content-edit-project-page .putih .input-wrap .input-group #role-dropdown:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 97, 70, 0.25);
+}
+.content-edit-project-page .putih .input-wrap input {
+  border-radius: 30px;
+  border: #0c6146 1px solid;
+}
+.content-edit-project-page .putih .input-wrap input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 97, 70, 0.25);
+}
+.content-edit-project-page .putih .btn-wrap {
+  justify-content: center;
+  display: flex;
+}
+.content-edit-project-page .putih .btn-wrap .btn {
+  background-color: #0c6146;
+  border-radius: 30px;
+  font-weight: bold;
+  border: #0c6146 1px solid;
+  width: 200px;
+}
+.content-edit-project-page .putih .btn-wrap .btn:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+/* End Edit Project Page */
+
+/* Start User Page */
+.container .content-user-page {
+  margin-top: 100px;
+}
+.container .content-user-page a button.btn {
+  background-color: #0c6146;
+  border: #0c6146 1px solid;
+}
+.container .content-user-page a button.btn:hover {
+  background-color: #fff;
+  color: #0c6146;
+  border: #0c6146 1px solid;
+}
+.container .content-user-page .table {
+  margin-top: 10px;
+}
+/* End User Page */
