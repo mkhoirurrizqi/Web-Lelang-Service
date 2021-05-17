@@ -554,3 +554,21 @@
   margin-top: 10px;
 }
 /* End User Page */
+
+/* Start Bid Page */
+.container .content-bid-page {
+  margin-top: 100px;
+}
+.container .content-bid-page a button.btn {
+  background-color: #f5bc42;
+  border: #f5bc42 1px solid;
+}
+.container .content-bid-page a button.btn:hover {
+  background-color: #fff;
+  color: #f5bc42;
+  border: #f5bc42 1px solid;
+}
+.container .content-bid-page .table {
+  margin-top: 10px;
+}
+/* End Bid Page */

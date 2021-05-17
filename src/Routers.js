@@ -26,7 +26,7 @@ const Routers = () => {
         <Route exact path="/active">
           <HomeActive />
         </Route>
-        <Route path="/onprogress">
+        <Route exact path="/onprogress">
           <HomeProgress />
         </Route>
         <Route path="/done">
@@ -45,7 +45,7 @@ const Routers = () => {
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route path="/active/bid">
+        <Route path="/onprogress/bid">
           <Bid />
         </Route>
         <Route path="/active/create">
