@@ -37,6 +37,8 @@
   }
 }
 
+/* --------------------------------------------------------------------------------- ALL --------------------------------------------------------------------------------- */
+
 /* Start Login page */
 .wrap {
   background-color: #e5e5e5;
@@ -90,9 +92,36 @@
 }
 /* End Login page */
 
+/* Navbar Start */
+.navbar {
+  background-color: #0c6146;
+}
+.navbar .nav-link,
+.profile-icon,
+.navbar-brand {
+  color: #fff;
+}
+.navbar .nav-link:hover {
+  font-weight: bold;
+  color: #fff;
+}
+.navbar .profile-icon:hover {
+  color: #000;
+}
+.navbar .navbar-toggler {
+  background-color: #fff;
+}
+.navbar .navbar-toggler i {
+  color: #0c6146;
+}
+.navbar .navbar-toggler:focus {
+  box-shadow: 2px 2px black;
+}
+/* End Navbar */
+
 /* --------------------------------------------------------------------------------- TEKNISI --------------------------------------------------------------------------------- */
 
-/* Start Update Page */
+/* Start Edit Profile Page */
 .wrap {
   background-color: #e5e5e5;
   display: flex;
@@ -158,38 +187,7 @@
   color: #0c6146;
   border: #0c6146 1px solid;
 }
-/* End Update Page */
-
-/* Navbar Start */
-.navbar {
-  background-color: #0c6146;
-}
-.navbar .nav-link,
-.profile-icon,
-.navbar-brand {
-  color: #fff;
-}
-.navbar .nav-link:hover,
-.profile-icon:hover,
-.navbar-brand:hover {
-  color: #000;
-}
-.navbar .navbar-toggler {
-  background-color: #fff;
-}
-.navbar .navbar-toggler i {
-  color: #0c6146;
-}
-.navbar .navbar-toggler:focus {
-  box-shadow: 2px 2px black;
-}
-.navbar ul#navbar-tab {
-  padding-left: 500px;
-}
-.navbar ul#navbar-tab .nav-item {
-  padding-left: 150px;
-}
-/* End Navbar */
+/* End Edit Profile Page */
 
 /* Start Profile Page */
 .profile-page {

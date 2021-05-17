@@ -1,6 +1,7 @@
 import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Navbar = () => {
   return (
@@ -28,11 +29,26 @@ const Navbar = () => {
                 Done
               </a>
             </li>
+            {/* {user != "admin" ? ( */}
+            <span></span>
+            {/* ) : (
+            <li className="nav-item">
+              <a className="nav-link" href="/user">
+                User
+              </a>
+            </li>
+            )} */}
           </ul>
           <form className="d-flex">
+            {/* {user != "admin" ? ( */}
             <a href="/profile" className="profile-icon">
               <FaRegUserCircle size="2em" />
             </a>
+            {/* ) : (
+              <a href="/" className="profile-icon">
+                <IoLogOutOutline size="2em" />
+              </a>
+            )} */}
           </form>
         </div>
       </div>

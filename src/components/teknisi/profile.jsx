@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./navbar";
+import Navbar from "../all/navbar";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 

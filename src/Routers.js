@@ -1,16 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/all/Login";
+import HomeActive from "./components/all/homepageactive";
+import HomeDone from "./components/all/homepagedone";
+import HomeProgress from "./components/all/homepageprogress";
 
-import HomeActive from "./components/teknisi/homepageactive";
-import HomeDone from "./components/teknisi/homepagedone";
-import HomeProgress from "./components/teknisi/homepageprogress";
 import Profile from "./components/teknisi/profile";
 import EditProfile from "./components/teknisi/editprofile";
 
-import ProjectActive from "./components/admin/projectpageactive";
-import ProjectDone from "./components/admin/projectpagedone";
-import ProjectProgress from "./components/admin/projectpageprogress";
 import Bid from "./components/admin/bidpage";
 import CreateProject from "./components/admin/createproject";
 import EditProject from "./components/admin/editproject";
@@ -26,10 +23,7 @@ const Routers = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        {/* End All */}
-
-        {/* Start Teknisi */}
-        <Route path="/active">
+        <Route exact path="/active">
           <HomeActive />
         </Route>
         <Route path="/onprogress">
@@ -38,6 +32,10 @@ const Routers = () => {
         <Route path="/done">
           <HomeDone />
         </Route>
+        {/* End All */}
+
+        {/* Start Teknisi */}
+
         <Route path="/profile/edit">
           <EditProfile />
         </Route>
@@ -47,31 +45,22 @@ const Routers = () => {
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route exact path="/admin/project-active">
-          <ProjectActive />
-        </Route>
-        <Route path="/admin/project-done">
-          <ProjectDone />
-        </Route>
-        <Route path="/admin/project-progress">
-          <ProjectProgress />
-        </Route>
-        <Route path="/admin/project-active/bid">
+        <Route path="/active/bid">
           <Bid />
         </Route>
-        <Route path="/admin/project-active/create">
+        <Route path="/active/create">
           <CreateProject />
         </Route>
-        <Route path="/admin/project-active/edit">
+        <Route path="/active/edit">
           <EditProject />
         </Route>
-        <Route exact path="/admin/user-page">
+        <Route exact path="/user">
           <UserPage />
         </Route>
-        <Route path="/admin/user-page/create">
+        <Route path="/user/create">
           <CreateUser />
         </Route>
-        <Route path="/admin/user-page/edit">
+        <Route path="/user/edit">
           <EditUser />
         </Route>
         {/* End Admin */}

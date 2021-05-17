@@ -6,7 +6,7 @@ const CreateUser = () => {
       <div className="wrap">
         <div className="content-create-user-page">
           <div className="cancel-side col-4">
-            <a href="/admin/user-page">
+            <a href="/user">
               <img src="/img/icons8_cancel_127px_2.png" alt="cancel-button" />
             </a>
           </div>
@@ -36,7 +36,7 @@ const CreateUser = () => {
                 </div>
               </div>
               <div className="btn-wrap">
-                <a href="/admin/user-page" className="create-user-btn">
+                <a href="/user" className="create-user-btn">
                   <button type="button" className="btn btn-primary">
                     Create
                   </button>
