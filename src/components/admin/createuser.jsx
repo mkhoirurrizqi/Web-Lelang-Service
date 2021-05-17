@@ -16,22 +16,22 @@ const CreateUser = () => {
             </div>
             <form action="">
               <div className="input-wrap">
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="nama" placeholder="Nama" />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="nim" placeholder="NIM" />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="email" placeholder="Email" />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="username" placeholder="Username" />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="phone" placeholder="Nomor Handphone" />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input type="text" className="form-control" id="password" placeholder="Password" />
                 </div>
               </div>

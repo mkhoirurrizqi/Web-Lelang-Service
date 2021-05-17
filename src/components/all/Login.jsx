@@ -14,16 +14,16 @@ const Login = () => {
           </div>
           <form action="">
             <div className="input-wrap">
-              <div class="mb-3">
+              <div className="mb-3">
                 <input type="email" className="form-control" id="email" placeholder="Email" />
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <input type="password" className="form-control" id="password" placeholder="Password" />
               </div>
             </div>
             <div className="btn-wrap">
               <a href="/active" className="login-btn">
-                <button type="button" class="btn btn-primary">
+                <button type="button" className="btn btn-primary">
                   Login
                 </button>
               </a>
