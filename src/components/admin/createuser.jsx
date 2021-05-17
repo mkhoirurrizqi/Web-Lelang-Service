@@ -16,6 +16,14 @@ const CreateUser = () => {
             </div>
             <form action="">
               <div className="input-wrap">
+                <div class="input-group mb-3">
+                  <label class="input-group-text">Role </label>
+                  <select class="form-select" id="role-dropdown">
+                    <option selected>Choose...</option>
+                    <option value="technisian">Technisian</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
                 <div className="mb-3">
                   <input type="text" className="form-control" id="nama" placeholder="Nama" />
                 </div>

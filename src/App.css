@@ -343,6 +343,17 @@
 .content-create-user-page .putih .input-wrap {
   margin: 0 20px 20px 20px;
 }
+.content-create-user-page .putih .input-wrap .input-group .input-group-text {
+  border: #0c6146 1px solid;
+  background-color: #0c6146;
+  color: #fff;
+}
+.content-create-user-page .putih .input-wrap .input-group #role-dropdown {
+  border: #0c6146 1px solid;
+}
+.content-create-user-page .putih .input-wrap .input-group #role-dropdown:focus {
+  box-shadow: 0 0 0 0.2rem rgba(12, 97, 70, 0.25);
+}
 .content-create-user-page .putih .input-wrap input {
   border-radius: 30px;
   border: #0c6146 1px solid;

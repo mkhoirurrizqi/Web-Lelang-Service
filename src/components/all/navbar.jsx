@@ -30,7 +30,7 @@ const Navbar = () => {
               </a>
             </li>
             {/* {user != "admin" ? ( */}
-            <span></span>
+            {/* <span></span> */}
             {/* ) : (
             <li className="nav-item">
               <a className="nav-link" href="/user">
