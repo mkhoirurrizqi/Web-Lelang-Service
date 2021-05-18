@@ -1,10 +1,18 @@
-import React from "react";
-import Navbar from "./navbar";
+import React, { useState } from "react";
+import NavbarT from "../teknisi/navbartechnician";
+import NavbarA from "../admin/navbaradmin";
 
 const HomeProgress = () => {
+  const [role, setRole] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [fixprice, setFixPrice] = useState("");
+  const [location, setLocation] = useState("");
+  const [hardware, setHardware] = useState("");
+  const [technician, setTechnician] = useState("");
   return (
     <div>
-      <Navbar />
+      {role != "admin" ? <NavbarT /> : <NavbarA />}
       <div className="container">
         <div className="content-onprogress-project">
           <div className="row">

@@ -1,12 +1,16 @@
-import React from "react";
-import Navbar from "../all/navbar";
+import React, { useState } from "react";
+import NavbarT from "./navbartechnician";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 
 const Profile = () => {
+  const [setNIM, setsetNIM] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [nohp, setNoHp] = useState("");
   return (
     <div>
-      <Navbar />
+      <NavbarT />
       <div className="container profile-page">
         <div className="prof-icon">
           <FaRegUserCircle size="15em" className="icon" />

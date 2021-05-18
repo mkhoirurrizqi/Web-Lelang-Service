@@ -1,10 +1,10 @@
-import React from "react";
-import Navbar from "../all/navbar";
+import React, { useState } from "react";
+import NavbarA from "../admin/navbaradmin";
 
 const UserPage = () => {
   return (
     <div>
-      <Navbar />
+      <NavbarA />
       <div className="container">
         <div className="content-user-page">
           <a href="/user/create">

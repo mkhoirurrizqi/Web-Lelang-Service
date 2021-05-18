@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CreateProject = () => {
+  const [status, setStatus] = useState("");
+  const [title, setTitle] = useState("");
+  const [initprice, setInitPrice] = useState("");
+  const [desc, setDesc] = useState("");
+  const [location, setLocation] = useState("");
+  const [hardware, setHardware] = useState("");
+  const [lastday, setLastDay] = useState("");
   return (
     <div className="wrap">
       <div className="content-create-project-page">
@@ -17,7 +24,7 @@ const CreateProject = () => {
             <div className="input-wrap">
               <div className="input-group mb-3">
                 <label className="input-group-text">Status</label>
-                <select className="form-select" id="role-dropdown">
+                <select className="form-select" id="role-dropdown" required onChange={(e) => setStatus(e.target.value)}>
                   <option selected>Choose...</option>
                   <option value="Active">Active</option>
                   <option value="On Progress">On Progress</option>
@@ -25,22 +32,22 @@ const CreateProject = () => {
                 </select>
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="title" placeholder="Title" />
+                <input type="text" className="form-control" id="title" placeholder="Title" required value={title} onChange={(e) => setTitle(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="initialprice" placeholder="Initial Price" />
+                <input type="text" className="form-control" id="initialprice" placeholder="Initial Price" required value={initprice} onChange={(e) => setInitPrice(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="description" placeholder="Description" />
+                <input type="text" className="form-control" id="description" placeholder="Description" required value={desc} onChange={(e) => setDesc(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="location" placeholder="Location" />
+                <input type="text" className="form-control" id="location" placeholder="Location" required value={location} onChange={(e) => setLocation(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="hardware" placeholder="Hardware Type" />
+                <input type="text" className="form-control" id="hardware" placeholder="Hardware Type" required value={hardware} onChange={(e) => setHardware(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="lastday" placeholder="Last Bidding Day" />
+                <input type="text" className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">

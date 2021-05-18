@@ -1,10 +1,14 @@
-import React from "react";
-import Navbar from "../all/navbar";
+import React, { useState } from "react";
+import NavbarA from "../admin/navbaradmin";
 
 const BidPage = () => {
+  const [bidderid, setBidderId] = useState("");
+  const [bidder, setBidder] = useState("");
+  const [bidon, setBidOn] = useState("");
+  const [askedprice, setAskedPrice] = useState("");
   return (
     <div>
-      <Navbar />
+      <NavbarA />
       <div className="container">
         <div className="content-bid-page">
           <a href="/onprogress">

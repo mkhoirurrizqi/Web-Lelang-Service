@@ -15,10 +15,10 @@ const Login = () => {
           <form action="">
             <div className="input-wrap">
               <div className="mb-3">
-                <input type="email" className="form-control" id="email" placeholder="Email" />
+                <input type="email" className="form-control" id="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="password" className="form-control" id="password" placeholder="Password" />
+                <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
