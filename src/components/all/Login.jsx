@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 import "../../App.css";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
+  const login = () => {
+    const dataAPI = {
+      email: email,
+      password: password,
+    };
+
+    axios.get("https://web-lelang.herokuapp.com/sanctum/csrf-cookie").then((response) => {
+      axios
+        .post("https://web-lelang.herokuapp.com/api/login", dataAPI)
+        .then((result) => {
+          console.log("res: ", result);
+          console.log("token: ", result.data.token);
+          console.log(result.data.user.email);
+          console.log("id: ", result.data.user.id);
+          history.push("/active");
+        })
+        .catch((err) => console.log("err ", err));
+    });
+  };
   return (
     <div className="wrap">
       <div className="content-login-page">
@@ -12,7 +34,7 @@ const Login = () => {
             <h1>Welcome back!</h1>
             <h1>Glad to have you back</h1>
           </div>
-          <form action="">
+          <form>
             <div className="input-wrap">
               <div className="mb-3">
                 <input type="email" className="form-control" id="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -22,8 +44,8 @@ const Login = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="/active" className="login-btn">
-                <button type="button" className="btn btn-primary">
+              <a className="login-btn">
+                <button type="button" className="btn btn-primary" onClick={login}>
                   Login
                 </button>
               </a>

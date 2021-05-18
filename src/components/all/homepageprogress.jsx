@@ -30,7 +30,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>
@@ -50,7 +50,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>
@@ -70,7 +70,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>
@@ -92,7 +92,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>
@@ -112,7 +112,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>
@@ -132,7 +132,7 @@ const HomeProgress = () => {
 
               <div className="card-body card-btn">
                 <a href="/onprogress/bid" className="card-link">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     Bidder
                   </button>
                 </a>

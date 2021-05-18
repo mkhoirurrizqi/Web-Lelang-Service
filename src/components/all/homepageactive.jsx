@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
 
-const HomeActive = () => {
+const HomeActive = (props) => {
   const [role, setRole] = useState("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -19,7 +19,7 @@ const HomeActive = () => {
             <span></span>
           ) : (
             <a href="/active/create">
-              <button type="button" class="btn btn-create btn-primary">
+              <button type="button" className="btn btn-create btn-primary">
                 Create
               </button>
             </a>
@@ -41,7 +41,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -49,12 +49,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>
@@ -75,7 +75,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -83,12 +83,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>
@@ -109,7 +109,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -117,12 +117,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>
@@ -145,7 +145,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -153,12 +153,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>
@@ -179,7 +179,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -187,12 +187,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>
@@ -213,7 +213,7 @@ const HomeActive = () => {
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Bid
                     </button>
                   </a>
@@ -221,12 +221,12 @@ const HomeActive = () => {
               ) : (
                 <div className="card-body card-btn">
                   <a href="/active/edit" className="card-link">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Edit
                     </button>
                   </a>
                   <a href="#" className="card-link">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Delete
                     </button>
                   </a>

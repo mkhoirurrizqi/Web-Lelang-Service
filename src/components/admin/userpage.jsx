@@ -8,11 +8,11 @@ const UserPage = () => {
       <div className="container">
         <div className="content-user-page">
           <a href="/user/create">
-            <button type="button" class="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               Create
             </button>
           </a>
-          <table class="table table-light table-striped table-hover table-bordered">
+          <table className="table table-light table-striped table-hover table-bordered">
             <thead>
               <tr>
                 <th scope="col">id</th>
@@ -35,12 +35,12 @@ const UserPage = () => {
                 <td>bepe831</td>
                 <td>085260007000</td>
                 <td>
-                  <div class="btn-group" role="group" aria-label="Basic outlined button group">
-                    <a type="button" class="btn btn-primary" href="/user/edit">
+                  <div className="btn-group" role="group" aria-label="Basic outlined button group">
+                    <a type="button" className="btn btn-primary" href="/user/edit">
                       Edit
                     </a>
-                    <form action="" method="post" class="d-inline">
-                      <button class="btn btn-warning">Delete</button>
+                    <form action="" method="post" className="d-inline">
+                      <button className="btn btn-warning">Delete</button>
                     </form>
                   </div>
                 </td>
@@ -54,12 +54,12 @@ const UserPage = () => {
                 <td>brunooo</td>
                 <td>081912344321</td>
                 <td>
-                  <div class="btn-group" role="group" aria-label="Basic outlined button group">
-                    <a type="button" class="btn btn-primary" href="/user/edit">
+                  <div className="btn-group" role="group" aria-label="Basic outlined button group">
+                    <a type="button" className="btn btn-primary" href="/user/edit">
                       Edit
                     </a>
-                    <form action="" method="post" class="d-inline" onclick="return confirm('Yakin mengarsipkan data?')">
-                      <button class="btn btn-warning">Delete</button>
+                    <form action="" method="post" className="d-inline" onclick="return confirm('Yakin mengarsipkan data?')">
+                      <button className="btn btn-warning">Delete</button>
                     </form>
                   </div>
                 </td>
