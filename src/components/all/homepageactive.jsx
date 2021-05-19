@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
+import { Redirect } from "react-router";
+import { useSelector } from "react-redux";
 
 const HomeActive = (props) => {
+  if (useSelector((data) => data.user.token)) {
+    return <Redirect to="/" />;
+  }
+  // const token = useSelector((data) => data.user.token);
+  // const id = useSelector((data) => data.user.id);
   const [role, setRole] = useState("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -10,8 +17,16 @@ const HomeActive = (props) => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+  // console.log("initoken: ", token);
+  // console.log("iniid: ", id);
+  console.log(
+    "ttkn: ",
+    useSelector((data) => data.user.token)
+  );
+
   return (
     <div>
+      {/* {token},{id} */}
       {role != "admin" ? <NavbarT /> : <NavbarA />}
       <div className="container">
         <div className="content-active-project">

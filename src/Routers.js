@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Login from "./components/all/Login";
 import HomeActive from "./components/all/homepageactive";
 import HomeDone from "./components/all/homepagedone";
@@ -20,49 +21,25 @@ const Routers = () => {
     <Router>
       <Switch>
         {/* Start All */}
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route exact path="/active">
-          <HomeActive />
-        </Route>
-        <Route exact path="/onprogress">
-          <HomeProgress />
-        </Route>
-        <Route path="/done">
-          <HomeDone />
-        </Route>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/active" component={HomeActive} />
+        <Route exact path="/onprogress" component={HomeProgress} />
+        <Route path="/done" component={HomeDone} />
         {/* End All */}
 
         {/* Start Teknisi */}
 
-        <Route path="/profile/edit">
-          <EditProfile />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <Route path="/profile/edit" component={EditProfile} />
+        <Route path="/profile" component={Profile} />
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route path="/onprogress/bid">
-          <Bid />
-        </Route>
-        <Route path="/active/create">
-          <CreateProject />
-        </Route>
-        <Route path="/active/edit">
-          <EditProject />
-        </Route>
-        <Route exact path="/user">
-          <UserPage />
-        </Route>
-        <Route path="/user/create">
-          <CreateUser />
-        </Route>
-        <Route path="/user/edit">
-          <EditUser />
-        </Route>
+        <Route path="/onprogress/bid" component={Bid} />
+        <Route path="/active/create" component={CreateProject} />
+        <Route path="/active/edit" component={EditProject} />
+        <Route exact path="/user" component={UserPage} />
+        <Route path="/user/create" component={CreateUser} />
+        <Route path="/user/edit" component={EditUser} />
         {/* End Admin */}
       </Switch>
     </Router>
