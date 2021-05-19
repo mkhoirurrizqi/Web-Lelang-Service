@@ -147,6 +147,9 @@ margin-bottom: 5px ;
   margin-bottom: 0.5rem;
   text-align: justify;
 }
+.navbar > .container, .navbar > .container-fluid, .navbar > .container-sm, .navbar > .container-md, .navbar > .container-lg, .navbar > .container-xl, .navbar > .container-xxl{
+  justify-content:unset !important;
+}
 .container .content-active-project {
   margin-top: 20px;
 }
