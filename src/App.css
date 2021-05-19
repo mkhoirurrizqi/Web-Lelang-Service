@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 .App {
   text-align: center;
 }
@@ -45,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-login-page {
   background-color: #0c6146;
@@ -93,20 +95,31 @@
 /* End Login page */
 
 /* Navbar Start */
+.logo{
+  /* font-family: 'Chela One', cursive; */
+  font-weight: bold;
+  font-family: 'Sacramento', cursive;
+  color: #fff; font-size: xx-large;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .navbar {
   background-color: #0c6146;
 }
 .navbar .nav-link,
 .profile-icon,
 .navbar-brand {
+  font-size: larger;
   color: #fff;
+  padding-left: 25px !important;
 }
 .navbar .nav-link:hover {
   font-weight: bold;
   color: #fff;
 }
 .navbar .profile-icon:hover {
-  color: #000;
+  color: #fff;
+  font-size: large;
 }
 .navbar .navbar-toggler {
   background-color: #fff;
@@ -120,6 +133,20 @@
 /* End Navbar */
 
 /* Start Active Project Page */
+.project-field p{
+  font-family: 'Play', sans-serif;
+margin-bottom: 5px ;
+}
+.card-title {
+  margin-bottom: 1rem;
+}
+.card{
+  margin-bottom: 40px;
+}
+.project-desc{
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
 .container .content-active-project {
   margin-top: 20px;
 }
@@ -135,6 +162,7 @@
 .container .content-active-project .row {
   justify-content: space-around;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 .container .content-active-project .row .card {
   width: 18rem;
@@ -208,7 +236,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-update-page {
   background-color: #0c6146;
@@ -319,7 +347,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-edit-user-page {
   background-color: #0c6146;
@@ -387,7 +415,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-create-user-page {
   background-color: #0c6146;
@@ -466,7 +494,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-create-project-page {
   background-color: #0c6146;
@@ -545,7 +573,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 100vh;
 }
 .content-edit-project-page {
   background-color: #0c6146;
