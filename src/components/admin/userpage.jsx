@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavbarA from "../admin/navbaradmin";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const UserPage = () => {
   const role = useSelector((data) => data.user.role);
@@ -8,6 +9,8 @@ const UserPage = () => {
   const id = useSelector((data) => data.user.id);
 
   const [userArray, setUserArray] = useState([]);
+
+  let history = useHistory();
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/showalluser", {
@@ -43,6 +46,30 @@ const UserPage = () => {
         console.error(error);
       });
   }, []);
+
+  const deleteUserPost = (deleteid) => {
+    fetch("https://web-lelang.herokuapp.com/api/deleteuser", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: deleteid,
+      }),
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((responseJson) => {
+        console.log("resp:", responseJson);
+        history.go(0); //refresh page
+      })
+      .catch((error) => {
+        console.error("err", error);
+      });
+  };
 
   return (
     <div>
@@ -83,9 +110,13 @@ const UserPage = () => {
                         <a type="button" className="btn btn-primary" href="/user/edit">
                           Edit
                         </a>
-                        <form action="" method="post" className="d-inline">
-                          <button className="btn btn-warning">Delete</button>
-                        </form>
+                        {user.email == "admin@admin.com" ? (
+                          <span></span>
+                        ) : (
+                          <button className="btn btn-warning" onClick={() => deleteUserPost(user.id)}>
+                            Delete
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
