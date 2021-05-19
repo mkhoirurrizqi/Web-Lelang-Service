@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
 import { Redirect } from "react-router";
 import { useSelector } from "react-redux";
 import {ReactNumberFormat} from "./numberformat";
-
-const HomeActive = (props) => {
-  const [role, setRole] = useState("");
+import { useHistory } from "react-router-dom";
+const HomeActive = () => {
+  let history = useHistory();
+  const role = useSelector(data => data.user.role);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [initprice, setInitPrice] = useState("");
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+  const token = useSelector(data => data.user.token);
+  const id = useSelector(data => data.user.id);
+ 
   // if (useSelector((data) => data.user.token)) {
   //   return <Redirect to="/" />;
   // }
-  const token = useSelector((data) => data.user.token);
   // const token = useSelector((data) => data.user.token);
   // const id = useSelector((data) => data.user.id);
   // console.log("initoken: ", token);

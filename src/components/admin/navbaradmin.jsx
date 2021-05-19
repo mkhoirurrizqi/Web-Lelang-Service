@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoLogOutOutline } from "react-icons/io5";
 import {  useSelector,useDispatch } from 'react-redux';
-import { tokeniduser} from '../redux/action';
+import { tokenidroleuser} from '../redux/action';
 
 
 const NavbarA = () => {
@@ -11,6 +11,7 @@ const NavbarA = () => {
   const dispatch = useDispatch();
   const token = useSelector(data => data.user.token);
   const id = useSelector(data => data.user.id);
+  const role = useSelector(data => data.user.role);
   const logoutpost =() => {
     console.log(token);
     fetch('https://web-lelang.herokuapp.com/api/logout', {
@@ -27,7 +28,7 @@ const NavbarA = () => {
         .then((response) => {
           console.log(response);
           if (response.status === 200) {
-            dispatch(tokeniduser("",""))
+            dispatch(tokenidroleuser("","",""))
             history.push("/");
             return response.json()
           } else {

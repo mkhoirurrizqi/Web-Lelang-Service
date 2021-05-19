@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../App.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { tokeniduser } from "../redux/action";
+import {  tokenidroleuser } from "../redux/action";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
@@ -10,6 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
+  const [role, setRole] = useState("");
 
   let history = useHistory();
 
@@ -28,7 +29,8 @@ const Login = () => {
           console.log(result.data.user.email);
           console.log("id: ", result.data.user.id);
           setToken(result.data.token);
-          dispatch(tokeniduser(result.data.token, result.data.user.id));
+          setRole(result.data.role);
+          dispatch( tokenidroleuser(result.data.token, result.data.user.id,result.data.role));
           history.push("/active");
         })
         .catch((err) => console.log("err ", err));

@@ -4,7 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import {  useSelector,useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { tokeniduser} from '../redux/action';
+import { tokenidroleuser} from '../redux/action';
 
 const Profile = () => {
   const [setNIM, setsetNIM] = useState("");
@@ -31,7 +31,7 @@ const Profile = () => {
         .then((response) => {
           console.log(response);
           if (response.status === 200) {
-            dispatch(tokeniduser("",""))
+            dispatch(tokenidroleuser("","",""))
             history.push("/");
             return response.json()
           } else {

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
 import {ReactNumberFormat} from "./numberformat";
-
+import { useSelector } from "react-redux";
 const HomeProgress = () => {
-  const [role, setRole] = useState("");
+  const role = useSelector(data => data.user.role);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [fixprice, setFixPrice] = useState("");

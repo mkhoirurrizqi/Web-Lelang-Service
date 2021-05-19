@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
 import { useSelector } from "react-redux";
 import {ReactNumberFormat} from "./numberformat";
 
-const HomeDone = () => {
-  const [role, setRole] = useState("");
+const HomeDone = (props) => {
+  const role = useSelector(data => data.user.role);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [initprice, setInitPrice] = useState("");
@@ -14,6 +14,7 @@ const HomeDone = () => {
   const [hardware, setHardware] = useState("");
   const [technician, setTechnician] = useState("");
   const token = useSelector((data) => data.user.token);
+
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}
