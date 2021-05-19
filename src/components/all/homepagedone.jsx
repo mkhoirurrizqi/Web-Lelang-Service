@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
+import { useSelector } from "react-redux";
 
 const HomeDone = () => {
   const [role, setRole] = useState("");
@@ -11,6 +12,7 @@ const HomeDone = () => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [technician, setTechnician] = useState("");
+  const token = useSelector((data) => data.user.token);
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}

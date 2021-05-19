@@ -5,25 +5,25 @@ import { Redirect } from "react-router";
 import { useSelector } from "react-redux";
 
 const HomeActive = (props) => {
-  if (useSelector((data) => data.user.token)) {
-    return <Redirect to="/" />;
-  }
-  // const token = useSelector((data) => data.user.token);
-  // const id = useSelector((data) => data.user.id);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("admin");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [initprice, setInitPrice] = useState("");
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+  // if (useSelector((data) => data.user.token)) {
+  //   return <Redirect to="/" />;
+  // }
+  const token = useSelector((data) => data.user.token);
+  // const token = useSelector((data) => data.user.token);
+  // const id = useSelector((data) => data.user.id);
   // console.log("initoken: ", token);
   // console.log("iniid: ", id);
-  console.log(
-    "ttkn: ",
-    useSelector((data) => data.user.token)
-  );
-
+  // console.log(
+  //   "ttkn: ",
+  //   useSelector((data) => data.user.token)
+  // );
   return (
     <div>
       {/* {token},{id} */}
@@ -43,7 +43,7 @@ const HomeActive = (props) => {
           <div className="row">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title project-title">Laptop Blackscreen</h5>
+                <h5 className="card-title project-title">{token}</h5>
                 <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
               </div>
               <ul className="list-group list-group-flush">
