@@ -8,29 +8,45 @@ import { useHistory } from "react-router-dom";
 const HomeActive = () => {
   let history = useHistory();
   const role = useSelector(data => data.user.role);
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [initprice, setInitPrice] = useState("");
-  const [location, setLocation] = useState("");
-  const [hardware, setHardware] = useState("");
-  const [lastday, setLastDay] = useState("");
+  const [storeArray, setStoreArray] = useState([]);
   const token = useSelector(data => data.user.token);
-  const id = useSelector(data => data.user.id);
- 
-  // if (useSelector((data) => data.user.token)) {
-  //   return <Redirect to="/" />;
-  // }
-  // const token = useSelector((data) => data.user.token);
-  // const id = useSelector((data) => data.user.id);
-  // console.log("initoken: ", token);
-  // console.log("iniid: ", id);
-  // console.log(
-  //   "ttkn: ",
-  //   useSelector((data) => data.user.token)
-  // );
+  useEffect(() => {
+  fetch("https://web-lelang.herokuapp.com/api/activeproject", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then((responseJson) => {
+      setStoreArray([]);
+      responseJson.forEach((element) => {
+        setStoreArray((storeArray) => [
+          ...storeArray,
+          {
+            judul: element.judul,
+            harga_awal: element.harga_awal,
+            deskripsi: element.deskripsi,
+            lokasi: element.lokasi,
+            jenis: element.jenis,
+            tanggal_akhir_bid: element.tanggal_akhir_bid,
+          },
+        ]);
+      });
+      console.log(responseJson);
+      console.log(storeArray);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
+
   return (
     <div>
-      {/* {token},{id} */}
       {role != "admin" ? <NavbarT /> : <NavbarA />}
       <div className="container">
         <div className="content-active-project">
@@ -43,21 +59,21 @@ const HomeActive = () => {
               </button>
             </a>
           )}
-
-          <div className="row">
-            <div className="card">
+  <div className="row">
+{storeArray.map((store, i) => {
+            return (
+            <div className="card" key={i}>
               <div className="card-body">
-                <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
-                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
+                <h3 className="text-center card-title project-title">{store.judul}</h3>
+                <p className="card-text project-desc">{store.deskripsi}</p>
                 <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : <ReactNumberFormat value={initprice} /></p>
-                <p className="text-center project-location">Location : Lampung Selatan</p>
-                <p className="text-center project-hardware-type">Type : Laptop</p>
-                <p className="text-center project-last-day">Date end : 2021-05-20</p>
+                <p className="text-center project-initial-price">Open Price : <ReactNumberFormat value={store.harga_awal} /></p>
+                <p className="text-center project-location">Location : {store.lokasi}</p>
+                <p className="text-center project-hardware-type">Type : {store.jenis}</p>
+                <p className="text-center project-last-day">Date end : {store.tanggal_akhir_bid}</p>
                 </div>
               </div>
               
-
               {role != "admin" ? (
                 <div className="card-body card-btn">
                   <a href="#" className="card-link">
@@ -81,147 +97,9 @@ const HomeActive = () => {
                 </div>
               )}
             </div>
-            <div className="card">
-              <div className="card-body">
-                <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
-                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
-                <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : 35000</p>
-                <p className="text-center project-location">Location : Lampung Selatan</p>
-                <p className="text-center project-hardware-type">Type : Laptop</p>
-                <p className="text-center project-last-day">Date end : 2021-05-20</p>
-                </div>
-              </div>
-              
-
-              {role != "admin" ? (
-                <div className="card-body card-btn">
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Bid
-                    </button>
-                  </a>
-                </div>
-              ) : (
-                <div className="card-body card-btn">
-                  <a href="/active/edit" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Edit
-                    </button>
-                  </a>
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-warning">
-                      Delete
-                    </button>
-                  </a>
-                </div>
-              )}
-            </div><div className="card">
-              <div className="card-body">
-                <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
-                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
-                <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : 35000</p>
-                <p className="text-center project-location">Location : Lampung Selatan</p>
-                <p className="text-center project-hardware-type">Type : Laptop</p>
-                <p className="text-center project-last-day">Date end : 2021-05-20</p>
-                </div>
-              </div>
-              
-
-              {role != "admin" ? (
-                <div className="card-body card-btn">
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Bid
-                    </button>
-                  </a>
-                </div>
-              ) : (
-                <div className="card-body card-btn">
-                  <a href="/active/edit" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Edit
-                    </button>
-                  </a>
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-warning">
-                      Delete
-                    </button>
-                  </a>
-                </div>
-              )}
-            </div><div className="card">
-              <div className="card-body">
-                <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
-                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
-                <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : 35000</p>
-                <p className="text-center project-location">Location : Lampung Selatan</p>
-                <p className="text-center project-hardware-type">Type : Laptop</p>
-                <p className="text-center project-last-day">Date end : 2021-05-20</p>
-                </div>
-              </div>
-              
-
-              {role != "admin" ? (
-                <div className="card-body card-btn">
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Bid
-                    </button>
-                  </a>
-                </div>
-              ) : (
-                <div className="card-body card-btn">
-                  <a href="/active/edit" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Edit
-                    </button>
-                  </a>
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-warning">
-                      Delete
-                    </button>
-                  </a>
-                </div>
-              )}
-            </div><div className="card">
-              <div className="card-body">
-                <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
-                <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
-                <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : 35000</p>
-                <p className="text-center project-location">Location : Lampung Selatan</p>
-                <p className="text-center project-hardware-type">Type : Laptop</p>
-                <p className="text-center project-last-day">Date end : 2021-05-20</p>
-                </div>
-              </div>
-              
-
-              {role != "admin" ? (
-                <div className="card-body card-btn">
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Bid
-                    </button>
-                  </a>
-                </div>
-              ) : (
-                <div className="card-body card-btn">
-                  <a href="/active/edit" className="card-link">
-                    <button type="button" className="btn btn-primary">
-                      Edit
-                    </button>
-                  </a>
-                  <a href="#" className="card-link">
-                    <button type="button" className="btn btn-warning">
-                      Delete
-                    </button>
-                  </a>
-                </div>
-              )}
-            </div>
+            );
+          })}
+           
           </div>
         </div>
       </div>
