@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
+import {ReactNumberFormat} from "./numberformat";
 
 const HomeProgress = () => {
   const [role, setRole] = useState("");
@@ -21,7 +22,7 @@ const HomeProgress = () => {
                 <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
                 <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
               <div className="project-field">
-                <p className="text-center project-fixed-price">Fixed Price : Rp. 40000</p>
+                <p className="text-center project-fixed-price">Fixed Price : <ReactNumberFormat value={fixprice} /></p>
                 <p className="text-center project-location">Location : Lampung Selatan</p>
                 <p className="text-center project-hardware-type">Type : Laptop</p>
                 <p className="text-center project-technisian">Technisian : Rizqi</p>

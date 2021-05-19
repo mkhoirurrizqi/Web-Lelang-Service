@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavbarT from "../teknisi/navbartechnician";
 import NavbarA from "../admin/navbaradmin";
 import { useSelector } from "react-redux";
+import {ReactNumberFormat} from "./numberformat";
 
 const HomeDone = () => {
   const [role, setRole] = useState("");
@@ -24,8 +25,8 @@ const HomeDone = () => {
                 <h3 className="text-center card-title project-title">Laptop Blackscreen</h3>
                 <p className="card-text project-desc">Ketika laptop dihidupkan, tidak tampila apa-apa, hanya layar hitam</p>
               <div className="project-field">
-                <p className="text-center project-initial-price">Open Price : Rp. 35000</p>
-                <p className="text-center project-fixed-price">Fixed Price : Rp. 40000</p>
+                <p className="text-center project-initial-price">Open Price : <ReactNumberFormat value={initprice} /></p>
+                <p className="text-center project-fixed-price">Fixed Price : <ReactNumberFormat value={fixprice} /></p>
                 <p className="text-center project-location">Location : Lampung Selatan</p>
                 <p className="text-center project-hardware-type">Type : Laptop</p>
                 <p className="text-center project-technisian">Technisian : Rizqi</p>
