@@ -6,6 +6,7 @@ import {ReactNumberFormat} from "./numberformat";
 
 const HomeDone = (props) => {
   const role = useSelector(data => data.user.role);
+  const [technician, setTechnician] = useState("");
   const [storeArray, setStoreArray] = useState([]);
   const token = useSelector((data) => data.user.token);
   useEffect(() => {
@@ -60,7 +61,7 @@ const HomeDone = (props) => {
             return response.json();
           })
           .then((responseJson) => {
-            return responseJson.name;
+            setTechnician( responseJson.name);
           })
           .catch((error) => {
             console.error(error);
@@ -86,7 +87,7 @@ const HomeDone = (props) => {
                 <p className="text-center project-fixed-price">Fixed Price : <ReactNumberFormat value={store.harga_fix} /></p>
                 <p className="text-center project-location">Location : {store.lokasi}</p>
                 <p className="text-center project-hardware-type">Type : {store.jenis}</p>
-                <p className="text-center project-technisian">Technisian : {getusername(store.user_id)}</p>
+                <p className="text-center project-technisian">Technisian : {getusername(store.user_id)}{technician}</p>
                 </div>
               </div>
             </div>

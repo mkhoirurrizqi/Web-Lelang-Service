@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import NavbarT from "./navbartechnician";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { tokenidroleuser} from '../redux/action';
 
 const Profile = () => {
-  const [setNIM, setsetNIM] = useState("");
+  const [NIM, setNIM] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [nohp, setNoHp] = useState("");
@@ -15,6 +15,30 @@ const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector(data => data.user.token);
   const id = useSelector(data => data.user.id);
+
+  useEffect(() => {
+    fetch("https://web-lelang.herokuapp.com/api/user", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((responseJson) => {
+        setNIM( responseJson.nim);
+        setName( responseJson.name);
+        setEmail( responseJson.email);
+        setNoHp( responseJson.nohp);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }, []);
+
   const logoutpost =() => {
     console.log(token);
     fetch('https://web-lelang.herokuapp.com/api/logout', {
@@ -48,15 +72,15 @@ const Profile = () => {
         </div>
         <div className="bio">
           <div className="name">
-            <h1>Bruno Mars</h1>
+            <h1>{name}</h1>
             <a href="/profile/edit">
               <FiEdit className="icon" />
             </a>
           </div>
           <div className="other">
-            <p>118140901</p>
-            <p>bruno.118140901@student.itera.ac.id</p>
-            <p>085820007000</p>
+            <p>{NIM}</p>
+            <p>{email}</p>
+            <p>{nohp}</p>
           </div>
         </div>
         <div className="btn-wrap">
