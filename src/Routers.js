@@ -15,6 +15,7 @@ import EditProject from "./components/admin/editproject";
 import UserPage from "./components/admin/userpage";
 import CreateUser from "./components/admin/createuser";
 import EditUser from "./components/admin/edituser";
+import CreateBid from "./components/teknisi/createbid";
 
 const Routers = () => {
   return (
@@ -31,6 +32,7 @@ const Routers = () => {
 
         <Route path="/profile/edit" component={EditProfile} />
         <Route path="/profile" component={Profile} />
+        <Route path="/active/bidproject/:id" component={CreateBid} />
         {/* End Teknisi */}
 
         {/* Start Admin */}
