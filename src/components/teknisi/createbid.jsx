@@ -59,7 +59,7 @@ const CreateUser = (props) => {
     <div className="wrap">
       <div className="content-create-user-page">
         <div className="cancel-side col-4">
-          <a href="/user">
+          <a href="/active">
             <img src="/img/icons8_cancel_127px_2.png" alt="cancel-button" />
           </a>
         </div>
