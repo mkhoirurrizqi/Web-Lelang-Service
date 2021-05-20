@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const EditUser = (props) => {
   let history = useHistory();
   const token = useSelector((data) => data.user.token);
+  const role = useSelector((data) => data.user.role);
   const idKey = props.match.params.id;
   if (!token) {
     history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
   }
 
   const [email, setEmail] = useState("");

@@ -15,9 +15,13 @@ const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((data) => data.user.token);
   const id = useSelector((data) => data.user.id);
+  const role = useSelector((data) => data.user.role);
 
   if (!token) {
     history.push("/");
+  }
+  if (role != "technician") {
+    history.push("/active");
   }
 
   useEffect(() => {

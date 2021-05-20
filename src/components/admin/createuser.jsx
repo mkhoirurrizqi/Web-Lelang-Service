@@ -11,6 +11,9 @@ const CreateUser = () => {
   if (!token) {
     history.push("/");
   }
+  if (role != "admin") {
+    history.push("/active");
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

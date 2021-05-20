@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const EditProfile = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +9,19 @@ const EditProfile = () => {
   const [nim, setNIM] = useState("");
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
+
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+  const role = useSelector((data) => data.user.role);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "technician") {
+    history.push("/active");
+  }
   return (
     <div className="wrap">
       <div className="content-update-page">

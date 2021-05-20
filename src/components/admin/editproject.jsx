@@ -1,6 +1,19 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const EditProject = () => {
+  let history = useHistory();
+  const role = useSelector((data) => data.user.role);
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
+  }
   const [status, setStatus] = useState("");
   const [title, setTitle] = useState("");
   const [initprice, setInitPrice] = useState("");

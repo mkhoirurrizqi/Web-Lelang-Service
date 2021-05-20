@@ -14,6 +14,9 @@ const UserPage = () => {
   if (!token) {
     history.push("/");
   }
+  if (role != "admin") {
+    history.push("/active");
+  }
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/showalluser", {

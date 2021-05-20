@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import NavbarA from "../admin/navbaradmin";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const BidPage = () => {
   const [bidderid, setBidderId] = useState("");
   const [bidder, setBidder] = useState("");
   const [bidon, setBidOn] = useState("");
   const [askedprice, setAskedPrice] = useState("");
+  let history = useHistory();
+  const role = useSelector((data) => data.user.role);
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
+  }
   return (
     <div>
       <NavbarA />

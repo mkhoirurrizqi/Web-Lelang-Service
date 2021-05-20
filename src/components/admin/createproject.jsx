@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 const CreateProject = () => {
   const [status, setStatus] = useState("");
   const [title, setTitle] = useState("");
@@ -8,47 +9,56 @@ const CreateProject = () => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
-  const token = useSelector(data => data.user.token);
-  const id = useSelector(data => data.user.id);
+  let history = useHistory();
+  const role = useSelector((data) => data.user.role);
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
+  }
   const createprojectpost = () => {
-    if(status == "" || title== ""||initprice == ""||desc == ""||location == ""||hardware == ""||status == ""||lastday == ""){
-     console.log('Ada field kosong');
-   }else{
-     console.log(lastday);
-   fetch("https://web-lelang.herokuapp.com/api/createProject", {
-     method: "POST",
-     headers: {
-       Accept: "application/json",
-       Authorization: "Bearer " + token,
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify({
-       judul: title,
-       harga_awal: initprice,
-       lokasi: location,
-       deskripsi: desc,
-       jenis: hardware,
-       tanggal_akhir_bid:lastday,
-       status: status,
-     }),
-   })
-     .then((response) => {
-       if (response.status === 201) {
-         return response.json();
-       } else {
-         console.log(response.status);
-         throw new Error("Something went wrong on api server!");
-       }
-     })
-     .then((responseJson) => {
-       console.log(responseJson);
-      //  props.navigation.navigate("StoreProduct");
-     })
-     .catch((error) => {
-       console.error(error);
-     });
-   }
- };
+    if (status == "" || title == "" || initprice == "" || desc == "" || location == "" || hardware == "" || status == "" || lastday == "") {
+      console.log("Ada field kosong");
+    } else {
+      console.log(lastday);
+      fetch("https://web-lelang.herokuapp.com/api/createProject", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          judul: title,
+          harga_awal: initprice,
+          lokasi: location,
+          deskripsi: desc,
+          jenis: hardware,
+          tanggal_akhir_bid: lastday,
+          status: status,
+        }),
+      })
+        .then((response) => {
+          if (response.status === 201) {
+            return response.json();
+          } else {
+            console.log(response.status);
+            throw new Error("Something went wrong on api server!");
+          }
+        })
+        .then((responseJson) => {
+          console.log(responseJson);
+          //  props.navigation.navigate("StoreProduct");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
 
   return (
     <div className="wrap">
@@ -89,7 +99,7 @@ const CreateProject = () => {
                 <input type="text" className="form-control" id="hardware" placeholder="Hardware Type" required value={hardware} onChange={(e) => setHardware(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="date"  className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
+                <input type="date" className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
