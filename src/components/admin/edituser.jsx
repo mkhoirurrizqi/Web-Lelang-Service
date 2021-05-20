@@ -8,6 +8,10 @@ const EditUser = () => {
   let history = useHistory();
   const token = useSelector((data) => data.user.token);
 
+  if (!token) {
+    history.push("/");
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nama, setNama] = useState("");

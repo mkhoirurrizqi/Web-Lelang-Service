@@ -4,13 +4,16 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const UserPage = () => {
+  let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
   const id = useSelector((data) => data.user.id);
 
   const [userArray, setUserArray] = useState([]);
 
-  let history = useHistory();
+  if (!token) {
+    history.push("/");
+  }
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/showalluser", {

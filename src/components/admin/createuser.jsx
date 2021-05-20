@@ -3,9 +3,14 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const CreateUser = () => {
+  let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
   const id = useSelector((data) => data.user.id);
+
+  if (!token) {
+    history.push("/");
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,8 +19,6 @@ const CreateUser = () => {
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
   const [roleUser, setRoleUser] = useState("");
-
-  let history = useHistory();
 
   const createUserPost = () => {
     if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "" || roleUser == "") {
