@@ -71,6 +71,12 @@ const UserPage = () => {
       });
   };
 
+  const editUserPost = (editid, editemail) => {
+    console.log("id edit: ", editid);
+    console.log("email edit: ", editemail);
+    history.push({ pathname: "/user/edit", state: { userid: editid, useremail: editemail } });
+  };
+
   return (
     <div>
       <NavbarA />
@@ -107,9 +113,9 @@ const UserPage = () => {
                     <td>{user.nohp}</td>
                     <td>
                       <div className="btn-group" role="group" aria-label="Basic outlined button group">
-                        <a type="button" className="btn btn-primary" href="/user/edit">
+                        <button type="button" className="btn btn-primary" onClick={() => editUserPost(user.id, user.email)}>
                           Edit
-                        </a>
+                        </button>
                         {user.email == "admin@admin.com" ? (
                           <span></span>
                         ) : (
