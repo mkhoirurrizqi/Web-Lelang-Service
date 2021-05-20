@@ -3,11 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const EditUser = () => {
-  const loc = useLocation();
+const EditUser = (props) => {
   let history = useHistory();
   const token = useSelector((data) => data.user.token);
-
+  const idKey = props.match.params.id;
   if (!token) {
     history.push("/");
   }
@@ -18,9 +17,7 @@ const EditUser = () => {
   const [nim, setNIM] = useState("");
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
-
-  const editid = loc.state.userid;
-  const editemail = loc.state.useremail;
+  const [emailKey, setEmailKey] = useState("");
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/getusername", {
@@ -31,7 +28,7 @@ const EditUser = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: editid,
+        id: idKey,
       }),
     })
       .then(function (response) {
@@ -40,25 +37,11 @@ const EditUser = () => {
       .then((responseJson) => {
         console.log(responseJson);
         setEmail(responseJson.email);
+        setEmailKey(responseJson.email);
         setNama(responseJson.name);
         setNoHp(responseJson.nohp);
         setNIM(responseJson.nim);
         setUsername(responseJson.username);
-        // setUserArray([]);
-        // responseJson.forEach((element) => {
-        //   setUserArray((userArray) => [
-        //     ...userArray,
-        //     {
-        //       id: element.id,
-        //       name: element.name,
-        //       nim: element.nim,
-        //       nohp: element.nohp,
-        //       role: element.role,
-        //       username: element.username,
-        //       email: element.email,
-        //     },
-        //   ]);
-        // });
       })
       .catch((error) => {
         console.error(error);
@@ -77,7 +60,7 @@ const EditUser = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: editid,
+          id: idKey,
           name: nama,
           username: username,
           nohp: nohp,
@@ -93,7 +76,7 @@ const EditUser = () => {
             return "Gagal diupdate";
           }
         })
-        .then((responseJson) => {
+        .then(() => {
           history.push("/user");
         })
         .catch((error) => {
@@ -121,7 +104,7 @@ const EditUser = () => {
             <div className="mb-3">
               <input type="text" className="form-control" id="nim" placeholder="NIM" required value={nim} onChange={(e) => setNIM(e.target.value)} />
             </div>
-            {editemail == "admin@admin.com" ? null : (
+            {emailKey == "admin@admin.com" ? null : (
               <div className="mb-3">
                 <input type="text" className="form-control" id="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
@@ -139,11 +122,9 @@ const EditUser = () => {
           </div>
 
           <div className="btn-wrap">
-            {/* <a href="" className="edit-user-btn"> */}
             <button type="button" className="btn btn-primary" onClick={updateUser}>
               Update
             </button>
-            {/* </a> */}
           </div>
         </div>
       </div>

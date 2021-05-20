@@ -39,7 +39,7 @@ const Routers = () => {
         <Route path="/active/edit" component={EditProject} />
         <Route exact path="/user" component={UserPage} />
         <Route path="/user/create" component={CreateUser} />
-        <Route path="/user/edit" component={EditUser} />
+        <Route path="/user/edit/:id" component={EditUser} />
         {/* End Admin */}
       </Switch>
     </Router>
