@@ -42,6 +42,7 @@ const HomeProgress = () => {
               jenis: element.jenis,
               tanggal_akhir_bid: element.tanggal_akhir_bid,
               user_id: element.user_id,
+              id: element.id,
             },
           ]);
         });
@@ -52,6 +53,7 @@ const HomeProgress = () => {
         console.error(error);
       });
   }, []);
+
   const getusername = (id) => {
     if (id) {
       fetch("https://web-lelang.herokuapp.com/api/getusername", {
@@ -79,6 +81,14 @@ const HomeProgress = () => {
       return "-";
     }
   };
+  const bidderprojectPost = (id) => {
+    console.log("id edit: ", id);
+    // history.push({ pathname: `/active/edit/${id}` });
+    history.push({
+      pathname: "/onprogress/bid/"+id,
+      state:{  idproject:id }
+    });
+  };
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}
@@ -103,7 +113,7 @@ const HomeProgress = () => {
                       </p>
                     </div>
                     <div className="card-body card-btn">
-                      <a href="/onprogress/bid" className="card-link">
+                      <a href="" onClick={() => bidderprojectPost(store.id)}className="card-link">
                         <button type="button" className="btn btn-primary">
                           Bidder
                         </button>

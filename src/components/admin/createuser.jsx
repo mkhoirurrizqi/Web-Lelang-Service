@@ -80,7 +80,7 @@ const CreateUser = () => {
                 <label className="input-group-text">Role</label>
                 <select className="form-select" id="role-dropdown" required onChange={(e) => setRoleUser(e.target.value)}>
                   <option selected>Choose...</option>
-                  <option value="technician">Technician</option>
+                  <option value="teknisi">Technician</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>

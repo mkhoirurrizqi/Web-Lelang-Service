@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [role, setRole] = useState("");
-
+  const [loggin,setLogin] = useState(true);
   let history = useHistory();
 
   const login = () => {
@@ -24,6 +24,9 @@ const Login = () => {
       axios
         .post("https://web-lelang.herokuapp.com/api/login", dataAPI)
         .then((result) => {
+          if(result){
+            setLogin(true);
+          }
           console.log("res: ", result);
           console.log("token: ", result.data.token);
           console.log(result.data.user.email);
@@ -33,7 +36,10 @@ const Login = () => {
           dispatch( tokenidroleuser(result.data.token, result.data.user.id,result.data.role));
           history.push("/active");
         })
-        .catch((err) => console.log("err ", err));
+        .catch((err) =>{ 
+          console.log("err ", err)
+          setLogin(false);
+        });
     });
   };
   return (
@@ -53,6 +59,11 @@ const Login = () => {
                 <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
+            {loggin ? (
+          <p className="pt-4"></p>
+        ) : (
+          <p className="text-center" style={{color:"red"}}>Login failed, try again</p>
+        )}
             <div className="btn-wrap">
               <a className="login-btn">
                 <button type="button" className="btn btn-primary" onClick={login}>

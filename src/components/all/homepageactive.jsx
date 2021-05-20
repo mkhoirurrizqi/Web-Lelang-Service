@@ -32,6 +32,7 @@ const HomeActive = () => {
           setStoreArray((storeArray) => [
             ...storeArray,
             {
+              id:element.id,
               judul: element.judul,
               harga_awal: element.harga_awal,
               deskripsi: element.deskripsi,
@@ -49,6 +50,38 @@ const HomeActive = () => {
       });
   }, []);
 
+  const editprojectPost = (id) => {
+    console.log("id edit: ", id);
+    // history.push({ pathname: `/active/edit/${id}` });
+    history.push({
+      pathname: "/active/edit/"+id,
+      state:{  id:id }
+    });
+  };
+
+  const deleteprojectPost = (deleteid) => {
+    fetch("https://web-lelang.herokuapp.com/api/deleteProject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: deleteid,
+      }),
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((responseJson) => {
+        console.log("resp:", responseJson);
+        history.go(0); //refresh page
+      })
+      .catch((error) => {
+        console.error("err", error);
+      });
+  };
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}
@@ -90,12 +123,12 @@ const HomeActive = () => {
                     </div>
                   ) : (
                     <div className="card-body card-btn">
-                      <a href="/active/edit" className="card-link">
+                      <a href="" onClick={() => editprojectPost(store.id)} className="card-link">
                         <button type="button" className="btn btn-primary">
                           Edit
                         </button>
                       </a>
-                      <a href="#" className="card-link">
+                      <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
                         <button type="button" className="btn btn-warning">
                           Delete
                         </button>

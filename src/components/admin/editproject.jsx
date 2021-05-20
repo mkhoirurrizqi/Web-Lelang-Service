@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const EditProject = () => {
+const EditProject = (props) => {
   let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
-  const id = useSelector((data) => data.user.id);
+  // const idKey = props.match.params.id;
+  const idKey = history.location.state.id;
 
   if (!token) {
     history.push("/");
@@ -21,6 +22,77 @@ const EditProject = () => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+
+  useEffect(() => {
+    
+    fetch("https://web-lelang.herokuapp.com/api/getProject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idKey,
+      }),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((responseJson) => {
+        console.log(idKey);
+        console.log(responseJson);
+        setStatus(responseJson.status);
+        setTitle(responseJson.judul);
+        setInitPrice(responseJson.harga_awal);
+        setDesc(responseJson.deskripsi);
+        setLocation(responseJson.lokasi);
+        setHardware(responseJson.jenis);
+        setLastDay(responseJson.tanggal_akhir_bid);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const updateProject = () => {
+    fetch("https://web-lelang.herokuapp.com/api/updateProject", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id:idKey,
+      judul: title,
+      harga_awal: initprice,
+      lokasi: location,
+      deskripsi: desc,
+      jenis: hardware,
+      tanggal_akhir_bid: lastday,
+      status: status,
+    }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(desc);
+        return response.json();
+      } else {
+        console.log(response.status);
+        throw new Error("Something went wrong on api server!");
+      }
+    })
+    .then((responseJson) => {
+      console.log(responseJson);
+      history.push("/active");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+  
+      
   return (
     <div className="wrap">
       <div className="content-edit-project-page">
@@ -60,11 +132,11 @@ const EditProject = () => {
                 <input type="text" className="form-control" id="hardware" placeholder="Hardware Type" required value={hardware} onChange={(e) => setHardware(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
+                <input type="date" className="form-control" id="lastday" placeholder="Last Bidding Date" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="/active" className="edit-project-btn">
+              <a onClick={updateProject} className="edit-project-btn">
                 <button type="button" className="btn btn-primary">
                   Update
                 </button>
