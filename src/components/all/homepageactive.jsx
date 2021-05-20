@@ -32,7 +32,7 @@ const HomeActive = () => {
           setStoreArray((storeArray) => [
             ...storeArray,
             {
-              id:element.id,
+              id: element.id,
               judul: element.judul,
               harga_awal: element.harga_awal,
               deskripsi: element.deskripsi,
@@ -50,12 +50,16 @@ const HomeActive = () => {
       });
   }, []);
 
+  const createBid = (projectid) => {
+    history.push({ pathname: `/active/bidproject/${projectid}` });
+  };
+
   const editprojectPost = (id) => {
     console.log("id edit: ", id);
     // history.push({ pathname: `/active/edit/${id}` });
     history.push({
-      pathname: "/active/edit/"+id,
-      state:{  id:id }
+      pathname: "/active/edit/" + id,
+      state: { id: id },
     });
   };
 
@@ -115,11 +119,9 @@ const HomeActive = () => {
 
                   {role != "admin" ? (
                     <div className="card-body card-btn">
-                      <a href="#" className="card-link">
-                        <button type="button" className="btn btn-primary">
-                          Bid
-                        </button>
-                      </a>
+                      <button type="button" className="btn btn-primary" onClick={() => createBid(store.id)}>
+                        Bid
+                      </button>
                     </div>
                   ) : (
                     <div className="card-body card-btn">
