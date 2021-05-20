@@ -111,9 +111,9 @@ const EditProject = (props) => {
                 <label className="input-group-text">Status</label>
                 <select className="form-select" id="role-dropdown" required onChange={(e) => setStatus(e.target.value)}>
                   <option selected>Choose...</option>
-                  <option value="Active">Active</option>
-                  <option value="On Progress">On Progress</option>
-                  <option value="Done">Done</option>
+                  <option value="active">Active</option>
+                  <option value="on progress">On Progress</option>
+                  <option value="done">Done</option>
                 </select>
               </div>
               <div className="mb-3">

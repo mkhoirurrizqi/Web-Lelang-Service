@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import NavbarA from "../admin/navbaradmin";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const BidPage = () => {
-  const [bidderid, setBidderId] = useState("");
   const [bidder, setBidder] = useState("");
-  const [bidon, setBidOn] = useState("");
-  const [askedprice, setAskedPrice] = useState("");
   let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
-  const id = useSelector((data) => data.user.id);
+  const [storeArray, setStoreArray] = useState([]);
+  const idproject = history.location.state.idproject;
 
   if (!token) {
     history.push("/");
@@ -19,6 +17,68 @@ const BidPage = () => {
   if (role != "admin") {
     history.push("/active");
   }
+  useEffect(() => {
+    
+    fetch("https://web-lelang.herokuapp.com/api/showbidproject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        project_id: idproject,
+      }),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((responseJson) => {
+        setStoreArray([]);
+        responseJson.forEach((element) => {
+          setStoreArray((storeArray) => [
+            ...storeArray,
+            {
+        user_id:element.user_id,
+        id:element.id,
+        created_at:element.created_at,
+        harga_tawar:element.harga_tawar,
+      },
+    ]);
+  });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const getusername = (id) => {
+    if (id) {
+      fetch("https://web-lelang.herokuapp.com/api/getusername", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then((responseJson) => {
+          console.log(responseJson);
+          setBidder(responseJson.name);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      return "-";
+    }
+  };
+  
   return (
     <div>
       <NavbarA />
@@ -40,11 +100,13 @@ const BidPage = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Bruno Mars</td>
-                <td>50000</td>
-                <td>2021-05-17 23:59:40</td>
+            {storeArray.map((store, i) => {
+              return (
+              <tr key={i}>
+                <th>{store.id}</th>
+                <td>{getusername(store.user_id)}{bidder}</td>
+                <td>{store.harga_tawar}</td>
+                <td>{store.created_at}</td>
                 <td>
                   <div className="btn-group" role="group" aria-label="Basic outlined button group">
                     <a type="button" className="btn btn-success" href="">
@@ -56,22 +118,8 @@ const BidPage = () => {
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th>2</th>
-                <td>Subro</td>
-                <td>40000</td>
-                <td>2021-05-18 02:41:57</td>
-                <td>
-                  <div className="btn-group" role="group" aria-label="Basic outlined button group">
-                    <a type="button" className="btn btn-success" href="">
-                      Accept
-                    </a>
-                    <form action="" method="post" className="d-inline">
-                      <button className="btn btn-danger">Reject</button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
+              );
+            })}
             </tbody>
           </table>
         </div>
