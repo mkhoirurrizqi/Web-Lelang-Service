@@ -3,13 +3,13 @@ import NavbarA from "../admin/navbaradmin";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const BidPage = () => {
+const BidPage = (props) => {
   const [bidder, setBidder] = useState("");
   let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
   const [storeArray, setStoreArray] = useState([]);
-  const idproject = history.location.state.idproject;
+  const idproject = props.match.params.pjid;
 
   if (!token) {
     history.push("/");
@@ -35,11 +35,13 @@ const BidPage = () => {
       })
       .then((responseJson) => {
         setStoreArray([]);
+        console.log(responseJson);
         responseJson.forEach((element) => {
           setStoreArray((storeArray) => [
             ...storeArray,
             {
         user_id:element.user_id,
+        bidder:element.name,
         id:element.id,
         created_at:element.created_at,
         harga_tawar:element.harga_tawar,
@@ -51,9 +53,10 @@ const BidPage = () => {
         console.error(error);
       });
   }, []);
-  const getusername = (id) => {
-    if (id) {
-      fetch("https://web-lelang.herokuapp.com/api/getusername", {
+
+ 
+  const accbid = (idbid,harga_tawar) => {
+    fetch("https://web-lelang.herokuapp.com/api/updateProjectbid", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -61,24 +64,71 @@ const BidPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: id,
+          id: idproject,
+          user_id: idbid,
+          harga_fix:harga_tawar
         }),
       })
         .then(function (response) {
-          return response.json();
+          return response;
         })
         .then((responseJson) => {
           console.log(responseJson);
-          setBidder(responseJson.name);
+          delallbid(idbid);
         })
         .catch((error) => {
           console.error(error);
         });
-    } else {
-      return "-";
-    }
   };
-  
+  const delallbid = () => {
+    fetch("https://web-lelang.herokuapp.com/api/delallbidproject", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          project_id: idproject
+        }),
+      })
+        .then(function (response) {
+          return response;
+        })
+        .then((responseJson) => {
+          console.log(responseJson);
+        history.go(0);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  };
+  const delbid = (idbid) => {
+    console.log(idbid);
+    console.log(token);
+    fetch("https://web-lelang.herokuapp.com/api/delbidproject", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: idbid
+        }),
+      })
+        .then(function (response) {
+          console.log(response);
+          return response;
+        })
+        .then((responseJson) => {
+          console.log(responseJson);
+          history.go(0);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  };
   return (
     <div>
       <NavbarA />
@@ -89,7 +139,7 @@ const BidPage = () => {
               Close
             </button>
           </a>
-          <div class="table-outter wrapper">
+          <div className="table-outter wrapper">
           <table className="table table-light table-striped table-hover table-bordered ">
             <thead>
               <tr>
@@ -105,17 +155,17 @@ const BidPage = () => {
               return (
               <tr key={i}>
                 <th scope="row">{store.id}</th>
-                <td>{getusername(store.user_id)}{bidder}</td>
+                <td>{store.bidder}</td>
                 <td>{store.harga_tawar}</td>
                 <td>{store.created_at}</td>
                 <td>
                   <div className="btn-group" role="group" aria-label="Basic outlined button group">
-                    <a type="button" className="btn btn-success" href="">
+                    <button  onClick={() => accbid(store.user_id,store.harga_tawar)} className="btn btn-success" >
                       Accept
-                    </a>
-                    <form action="" method="post" className="d-inline">
-                      <button className="btn btn-danger">Reject</button>
-                    </form>
+                    </button>
+                    
+                      <button onClick={() => delbid(store.id)} className="btn btn-danger">Reject</button>
+                    
                   </div>
                 </td>
               </tr>
