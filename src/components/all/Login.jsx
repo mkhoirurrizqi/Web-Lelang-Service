@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../../App.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import {  tokenidroleuser } from "../redux/action";
+import { tokenidroleuser } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [role, setRole] = useState("");
-  const [loggin,setLogin] = useState(true);
+  const [loggin, setLogin] = useState(true);
   let history = useHistory();
+
+  if (useSelector((data) => data.user.token)) {
+    history.push("/active");
+  }
 
   const login = () => {
     const dataAPI = {
@@ -24,7 +29,7 @@ const Login = () => {
       axios
         .post("https://web-lelang.herokuapp.com/api/login", dataAPI)
         .then((result) => {
-          if(result){
+          if (result) {
             setLogin(true);
           }
           console.log("res: ", result);
@@ -33,11 +38,11 @@ const Login = () => {
           console.log("id: ", result.data.user.id);
           setToken(result.data.token);
           setRole(result.data.role);
-          dispatch( tokenidroleuser(result.data.token, result.data.user.id,result.data.role));
+          dispatch(tokenidroleuser(result.data.token, result.data.user.id, result.data.role));
           history.push("/active");
         })
-        .catch((err) =>{ 
-          console.log("err ", err)
+        .catch((err) => {
+          console.log("err ", err);
           setLogin(false);
         });
     });
@@ -60,10 +65,12 @@ const Login = () => {
               </div>
             </div>
             {loggin ? (
-          <p className="pt-4"></p>
-        ) : (
-          <p className="text-center" style={{color:"red"}}>Login failed, try again</p>
-        )}
+              <p className="pt-4"></p>
+            ) : (
+              <p className="text-center" style={{ color: "red" }}>
+                Login failed, try again
+              </p>
+            )}
             <div className="btn-wrap">
               <a className="login-btn">
                 <button type="button" className="btn btn-primary" onClick={login}>
