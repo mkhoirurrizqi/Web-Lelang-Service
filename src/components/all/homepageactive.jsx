@@ -146,6 +146,14 @@ const HomeActive = () => {
         console.error("err", error);
       });
   };
+  const bidderprojectPost = (id) => {
+    console.log("id edit: ", id);
+    history.push({ pathname: `/onprogress/bid/${id}` });
+    // history.push({
+    //   pathname: "/onprogress/bid/"+id,
+    //   state:{  idproject:id }
+    // });
+  };
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}
@@ -202,14 +210,19 @@ const HomeActive = () => {
                     </div>
                   ) : (
                     <div className="card-body card-btn">
-                      <a href="" onClick={() => editprojectPost(store.id)} className="card-link">
-                        <button type="button" className="btn btn-primary">
+                      <a href="" onClick={() => editprojectPost(store.id)} className="card-link ">
+                        <button type="button" className="btn btn-primary mt-3">
                           Edit
                         </button>
                       </a>
-                      <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
-                        <button type="button" className="btn btn-warning">
+                      <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link ">
+                        <button type="button" className="btn btn-warning mt-3">
                           Delete
+                        </button>
+                      </a>
+                      <a href="#" onClick={() => bidderprojectPost(store.id)}className="card-link ">
+                        <button type="button" className="btn btn-secondary mt-3">
+                          Bidder
                         </button>
                       </a>
                     </div>
