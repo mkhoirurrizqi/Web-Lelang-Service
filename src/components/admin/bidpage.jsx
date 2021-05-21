@@ -89,7 +89,8 @@ const BidPage = () => {
               Close
             </button>
           </a>
-          <table className="table table-light table-striped table-hover table-bordered">
+          <div class="table-outter wrapper">
+          <table className="table table-light table-striped table-hover table-bordered ">
             <thead>
               <tr>
                 <th scope="col">id</th>
@@ -103,7 +104,7 @@ const BidPage = () => {
             {storeArray.map((store, i) => {
               return (
               <tr key={i}>
-                <th>{store.id}</th>
+                <th scope="row">{store.id}</th>
                 <td>{getusername(store.user_id)}{bidder}</td>
                 <td>{store.harga_tawar}</td>
                 <td>{store.created_at}</td>
@@ -122,6 +123,7 @@ const BidPage = () => {
             })}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>

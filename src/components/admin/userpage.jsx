@@ -92,6 +92,7 @@ const UserPage = () => {
               Create
             </button>
           </a>
+          <div class="table-outter wrapper">
           <table className="table table-light table-striped table-hover table-bordered">
             <thead>
               <tr>
@@ -109,7 +110,7 @@ const UserPage = () => {
               {userArray.map((user, i) => {
                 return (
                   <tr key={i}>
-                    <th>{i + 1}</th>
+                    <th scope="row">{i + 1}</th>
                     <td>{user.role}</td>
                     <td>{user.name}</td>
                     <td>{user.nim}</td>
@@ -135,6 +136,7 @@ const UserPage = () => {
               })}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </div>
