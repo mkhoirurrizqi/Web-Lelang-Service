@@ -86,6 +86,30 @@ const HomeActive = () => {
     }
   }, []);
 
+  const cancelBid = (projectid) => {
+    fetch("https://web-lelang.herokuapp.com/api/deleteBid", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: id,
+        project_id: projectid,
+      }),
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((responseJson) => {
+        history.go(0);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const createBid = (projectid) => {
     history.push({ pathname: `/active/bidproject/${projectid}` });
   };
@@ -164,7 +188,7 @@ const HomeActive = () => {
                   {role != "admin" ? (
                     <div className="card-body card-btn">
                       {print > 0 ? (
-                        <button type="button" className="btn btn-danger">
+                        <button type="button" className="btn btn-danger" onClick={() => cancelBid(store.id)}>
                           Cancel
                         </button>
                       ) : (
