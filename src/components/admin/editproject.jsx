@@ -6,8 +6,8 @@ const EditProject = (props) => {
   let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
-  // const idKey = props.match.params.id;
-  const idKey = history.location.state.id;
+  const idKey = props.match.params.idpj;
+  // const idKey = history.location.state.id;
 
   if (!token) {
     history.push("/");
@@ -97,7 +97,7 @@ const EditProject = (props) => {
     <div className="wrap">
       <div className="content-edit-project-page">
         <div className="cancel-side col-4">
-          <a href="/active">
+          <a href="#" onClick={history.goBack}>
             <img src="/img/icons8_cancel_127px_2.png" alt="cancel-button" />
           </a>
         </div>

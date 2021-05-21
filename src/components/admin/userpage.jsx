@@ -92,7 +92,7 @@ const UserPage = () => {
               Create
             </button>
           </a>
-          <div class="table-outter wrapper">
+          <div className="table-outter wrapper">
           <table className="table table-light table-striped table-hover table-bordered">
             <thead>
               <tr>
