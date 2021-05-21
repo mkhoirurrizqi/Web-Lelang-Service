@@ -188,7 +188,16 @@ const HomeActive = () => {
                   {role != "admin" ? (
                     <div className="card-body card-btn">
                       {print > 0 ? (
-                        <button type="button" className="btn btn-danger" onClick={() => cancelBid(store.id)}>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => {
+                            const confirmBox = window.confirm("Are you sure you want to cancel this bid?");
+                            if (confirmBox == true) {
+                              cancelBid(store.id);
+                            }
+                          }}
+                        >
                           Cancel
                         </button>
                       ) : (
@@ -207,7 +216,16 @@ const HomeActive = () => {
                           Edit
                         </button>
                       </a>
-                      <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
+                      <a
+                        href="#"
+                        onClick={() => {
+                          const confirmBox = window.confirm("Are you sure you want to delete this project?");
+                          if (confirmBox == true) {
+                            deleteprojectPost(store.id);
+                          }
+                        }}
+                        className="card-link"
+                      >
                         <button type="button" className="btn btn-warning">
                           Delete
                         </button>

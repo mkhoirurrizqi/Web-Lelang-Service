@@ -125,7 +125,16 @@ const EditUser = (props) => {
           </div>
 
           <div className="btn-wrap">
-            <button type="button" className="btn btn-primary" onClick={updateUser}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                const confirmBox = window.confirm("Are you sure you want to update this user?");
+                if (confirmBox == true) {
+                  updateUser();
+                }
+              }}
+            >
               Update
             </button>
           </div>

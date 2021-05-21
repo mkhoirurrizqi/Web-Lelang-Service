@@ -93,50 +93,58 @@ const UserPage = () => {
             </button>
           </a>
           <div class="table-outter wrapper">
-          <table className="table table-light table-striped table-hover table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Numb</th>
-                <th scope="col">Role</th>
-                <th scope="col">Name</th>
-                <th scope="col">NIM</th>
-                <th scope="col">Email</th>
-                <th scope="col">Username</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userArray.map((user, i) => {
-                return (
-                  <tr key={i}>
-                    <th scope="row">{i + 1}</th>
-                    <td>{user.role}</td>
-                    <td>{user.name}</td>
-                    <td>{user.nim}</td>
-                    <td>{user.email}</td>
-                    <td>{user.username}</td>
-                    <td>{user.nohp}</td>
-                    <td>
-                      <div className="btn-group" role="group" aria-label="Basic outlined button group">
-                        <button type="button" className="btn btn-primary" onClick={() => editUserPost(user.id)}>
-                          Edit
-                        </button>
-                        {user.email == "admin@admin.com" ? (
-                          <span></span>
-                        ) : (
-                          <button className="btn btn-warning" onClick={() => deleteUserPost(user.id)}>
-                            Delete
+            <table className="table table-light table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Numb</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">NIM</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userArray.map((user, i) => {
+                  return (
+                    <tr key={i}>
+                      <th scope="row">{i + 1}</th>
+                      <td>{user.role}</td>
+                      <td>{user.name}</td>
+                      <td>{user.nim}</td>
+                      <td>{user.email}</td>
+                      <td>{user.username}</td>
+                      <td>{user.nohp}</td>
+                      <td>
+                        <div className="btn-group" role="group" aria-label="Basic outlined button group">
+                          <button type="button" className="btn btn-primary" onClick={() => editUserPost(user.id)}>
+                            Edit
                           </button>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                          {user.email == "admin@admin.com" ? (
+                            <span></span>
+                          ) : (
+                            <button
+                              className="btn btn-warning"
+                              onClick={() => {
+                                const confirmBox = window.confirm("Are you sure you want to delete this user?");
+                                if (confirmBox == true) {
+                                  deleteUserPost(user.id);
+                                }
+                              }}
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

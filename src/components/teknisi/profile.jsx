@@ -91,11 +91,18 @@ const Profile = () => {
           </div>
         </div>
         <div className="btn-wrap">
-          <a href="#" onClick={logoutpost} className="logout-btn">
-            <button type="button" className="btn btn-primary">
-              Logout
-            </button>
-          </a>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              const confirmBox = window.confirm("Are you sure you want to logout?");
+              if (confirmBox == true) {
+                logoutpost();
+              }
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

@@ -104,7 +104,16 @@ const CreateUser = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="#" className="create-user-btn" onClick={createUserPost}>
+              <a
+                href="#"
+                className="create-user-btn"
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to create new user?");
+                  if (confirmBox == true) {
+                    createUserPost();
+                  }
+                }}
+              >
                 <button type="button" className="btn btn-primary">
                   Create
                 </button>

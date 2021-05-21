@@ -103,7 +103,16 @@ const CreateProject = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="#" onClick={createprojectpost} className="create-project-btn">
+              <a
+                href="#"
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to create new project?");
+                  if (confirmBox == true) {
+                    createprojectpost();
+                  }
+                }}
+                className="create-project-btn"
+              >
                 <button type="button" className="btn btn-primary">
                   Create
                 </button>

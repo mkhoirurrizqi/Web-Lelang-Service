@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -24,7 +24,6 @@ const EditProject = (props) => {
   const [lastday, setLastDay] = useState("");
 
   useEffect(() => {
-    
     fetch("https://web-lelang.herokuapp.com/api/getProject", {
       method: "POST",
       headers: {
@@ -57,42 +56,41 @@ const EditProject = (props) => {
 
   const updateProject = () => {
     fetch("https://web-lelang.herokuapp.com/api/updateProject", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id:idKey,
-      judul: title,
-      harga_awal: initprice,
-      lokasi: location,
-      deskripsi: desc,
-      jenis: hardware,
-      tanggal_akhir_bid: lastday,
-      status: status,
-    }),
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log(desc);
-        return response.json();
-      } else {
-        console.log(response.status);
-        throw new Error("Something went wrong on api server!");
-      }
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idKey,
+        judul: title,
+        harga_awal: initprice,
+        lokasi: location,
+        deskripsi: desc,
+        jenis: hardware,
+        tanggal_akhir_bid: lastday,
+        status: status,
+      }),
     })
-    .then((responseJson) => {
-      console.log(responseJson);
-      history.push("/active");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(desc);
+          return response.json();
+        } else {
+          console.log(response.status);
+          throw new Error("Something went wrong on api server!");
+        }
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        history.push("/active");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-  
-      
+
   return (
     <div className="wrap">
       <div className="content-edit-project-page">
@@ -136,7 +134,15 @@ const EditProject = (props) => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a onClick={updateProject} className="edit-project-btn">
+              <a
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to update this project?");
+                  if (confirmBox == true) {
+                    updateProject();
+                  }
+                }}
+                className="edit-project-btn"
+              >
                 <button type="button" className="btn btn-primary">
                   Update
                 </button>

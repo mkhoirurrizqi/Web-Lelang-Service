@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -115,7 +115,15 @@ const EditProfile = () => {
               </div>
             </div>
             <div className="btn-wrap">
-              <a onClick={updateUser} className="update-btn">
+              <a
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to update your profile?");
+                  if (confirmBox == true) {
+                    updateUser();
+                  }
+                }}
+                className="update-btn"
+              >
                 <button type="button" className="btn btn-primary">
                   Update
                 </button>

@@ -74,7 +74,16 @@ const CreateUser = (props) => {
               </div>
             </div>
             <div className="btn-wrap">
-              <button type="button" className="btn btn-primary" onClick={bidnow}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to place a bid?");
+                  if (confirmBox == true) {
+                    bidnow();
+                  }
+                }}
+              >
                 BID NOW
               </button>
             </div>
