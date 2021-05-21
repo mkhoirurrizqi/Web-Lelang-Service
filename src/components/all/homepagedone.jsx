@@ -35,6 +35,7 @@ const HomeDone = (props) => {
             ...storeArray,
             {
               judul: element.judul,
+              name: element.name,
               harga_awal: element.harga_awal,
               harga_fix: element.harga_fix,
               deskripsi: element.deskripsi,
@@ -52,32 +53,7 @@ const HomeDone = (props) => {
         console.error(error);
       });
   }, []);
-  const getusername = (id) => {
-    if (id) {
-      fetch("https://web-lelang.herokuapp.com/api/getusername", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: id,
-        }),
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then((responseJson) => {
-          setTechnician(responseJson.name);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      return "-";
-    }
-  };
+
   return (
     <div>
       {role != "admin" ? <NavbarT /> : <NavbarA />}
@@ -100,8 +76,9 @@ const HomeDone = (props) => {
                       <p className="text-center project-location">Location : {store.lokasi}</p>
                       <p className="text-center project-hardware-type">Type : {store.jenis}</p>
                       <p className="text-center project-technisian">
-                        Technisian : {getusername(store.user_id)}
-                        {technician}
+                      Technisian : {store.name ?
+                        (store.name):("-")
+                        }
                       </p>
                     </div>
                   </div>
