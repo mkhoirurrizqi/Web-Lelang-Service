@@ -36,9 +36,11 @@ const Routers = () => {
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route path="/onprogress/bid" component={Bid} />
+        <Route path="/onprogress/bid/:pjid" component={Bid} />
+        <Route path="/onprogress/edit/:idpj" component={EditProject} />
+        <Route path="/active/bid/:pjid" component={Bid} />
         <Route path="/active/create" component={CreateProject} />
-        <Route path="/active/edit" component={EditProject} />
+        <Route path="/active/edit/:idpj" component={EditProject} />
         <Route exact path="/user" component={UserPage} />
         <Route path="/user/create" component={CreateUser} />
         <Route path="/user/edit/:id" component={EditUser} />
