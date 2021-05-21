@@ -85,8 +85,8 @@ const HomeProgress = () => {
     console.log("id edit: ", id);
     // history.push({ pathname: `/active/edit/${id}` });
     history.push({
-      pathname: "/onprogress/bid/"+id,
-      state:{  idproject:id }
+      pathname: "/onprogress/bid/" + id,
+      state: { idproject: id },
     });
   };
   return (
@@ -97,7 +97,7 @@ const HomeProgress = () => {
           <div className="row">
             {storeArray.map((store, i) => {
               return (
-                <div className="card">
+                <div className="card" key={i}>
                   <div className="card-body">
                     <h3 className="text-center card-title project-title">L{store.judul}</h3>
                     <p className="card-text project-desc">{store.deskripsi}</p>
@@ -113,7 +113,7 @@ const HomeProgress = () => {
                       </p>
                     </div>
                     <div className="card-body card-btn">
-                      <a href="" onClick={() => bidderprojectPost(store.id)}className="card-link">
+                      <a href="" onClick={() => bidderprojectPost(store.id)} className="card-link">
                         <button type="button" className="btn btn-primary">
                           Bidder
                         </button>
