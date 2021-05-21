@@ -35,6 +35,7 @@ const HomeProgress = () => {
             ...storeArray,
             {
               judul: element.judul,
+              name: element.name,
               harga_awal: element.harga_awal,
               harga_fix: element.harga_fix,
               deskripsi: element.deskripsi,
@@ -54,40 +55,45 @@ const HomeProgress = () => {
       });
   }, []);
 
-  const getusername = (id) => {
-    if (id) {
-      fetch("https://web-lelang.herokuapp.com/api/getusername", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-        }),
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then((responseJson) => {
-          console.log(responseJson);
-          setTechnician(responseJson.name);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      return "-";
-    }
-  };
   const bidderprojectPost = (id) => {
+    console.log("id edit: ", id);
+    history.push({ pathname: `/onprogress/bid/${id}` });
+    // history.push({
+    //   pathname: "/onprogress/bid/"+id,
+    //   state:{  idproject:id }
+    // });
+  };
+  const editprojectPost = (id) => {
     console.log("id edit: ", id);
     // history.push({ pathname: `/active/edit/${id}` });
     history.push({
-      pathname: "/onprogress/bid/" + id,
-      state: { idproject: id },
+      pathname: "/onprogress/edit/" + id,
+      state: { id: id },
     });
+  };
+
+  const deleteprojectPost = (deleteid) => {
+    fetch("https://web-lelang.herokuapp.com/api/deleteProject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: deleteid,
+      }),
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((responseJson) => {
+        console.log("resp:", responseJson);
+        history.go(0); //refresh page
+      })
+      .catch((error) => {
+        console.error("err", error);
+      });
   };
   return (
     <div>
@@ -97,7 +103,7 @@ const HomeProgress = () => {
           <div className="row">
             {storeArray.map((store, i) => {
               return (
-                <div className="card" key={i}>
+                <div className="card"  key={i}>
                   <div className="card-body">
                     <h3 className="text-center card-title project-title">L{store.judul}</h3>
                     <p className="card-text project-desc">{store.deskripsi}</p>
@@ -108,18 +114,34 @@ const HomeProgress = () => {
                       <p className="text-center project-location">Location : {store.lokasi}</p>
                       <p className="text-center project-hardware-type">Type : {store.jenis}</p>
                       <p className="text-center project-technisian">
-                        Technisian : {getusername(store.user_id)}
-                        {technician}
+                        Technisian : {store.name ?
+                        (store.name):("-")
+                        }
                       </p>
                     </div>
-                    <div className="card-body card-btn">
-                      <a href="" onClick={() => bidderprojectPost(store.id)} className="card-link">
-                        <button type="button" className="btn btn-primary">
-                          Bidder
-                        </button>
-                      </a>
                     </div>
-                  </div>
+                    {role != "admin" ? (
+            <label></label>
+          ) : (
+            <div className="card-body card-btn">
+            <a href="" onClick={() => editprojectPost(store.id)} className="card-link">
+              <button type="button" className="btn btn-primary mt-3">
+                Edit
+              </button>
+            </a>
+            <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
+              <button type="button" className="btn btn-warning mt-3">
+                Delete
+              </button>
+            </a>
+            <a href="#" onClick={() => bidderprojectPost(store.id)}className="card-link">
+              <button type="button" className="btn btn-secondary mt-3">
+                Bidder
+              </button>
+            </a>
+          </div>
+                    )}
+                 
                 </div>
               );
             })}

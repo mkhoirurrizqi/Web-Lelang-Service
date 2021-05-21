@@ -44,6 +44,7 @@ const CreateProject = () => {
       })
         .then((response) => {
           if (response.status === 201) {
+            history.push("/active");
             return response.json();
           } else {
             console.log(response.status);

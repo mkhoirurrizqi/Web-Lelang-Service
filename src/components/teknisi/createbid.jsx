@@ -11,7 +11,7 @@ const CreateUser = (props) => {
   if (!token) {
     history.push("/");
   }
-  if (role != "technician") {
+  if (role === "admin") {
     history.push("/active");
   }
 
