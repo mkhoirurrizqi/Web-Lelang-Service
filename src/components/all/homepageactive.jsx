@@ -9,7 +9,9 @@ const HomeActive = () => {
   let history = useHistory();
   const role = useSelector((data) => data.user.role);
   const [storeArray, setStoreArray] = useState([]);
+  const [bidArray, setBidArray] = useState([]);
   const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
 
   if (!token) {
     history.push("/");
@@ -48,6 +50,40 @@ const HomeActive = () => {
       .catch((error) => {
         console.error(error);
       });
+  }, []);
+
+  useEffect(() => {
+    if (role == "technician") {
+      fetch("https://web-lelang.herokuapp.com/api/myBid", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: id,
+        }),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then((responseJson) => {
+          setBidArray([]);
+          responseJson.forEach((element) => {
+            setBidArray((bidArray) => [
+              ...bidArray,
+              {
+                project_id: element.project_id,
+              },
+            ]);
+          });
+          console.log("ini my bid", responseJson);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, []);
 
   const createBid = (projectid) => {
@@ -102,6 +138,14 @@ const HomeActive = () => {
           )}
           <div className="row">
             {storeArray.map((store, i) => {
+              let print = 0;
+              {
+                bidArray.map((bid) => {
+                  if (store.id == bid.project_id) {
+                    print = print + 1;
+                  }
+                });
+              }
               return (
                 <div className="card" key={i}>
                   <div className="card-body">
@@ -119,9 +163,18 @@ const HomeActive = () => {
 
                   {role != "admin" ? (
                     <div className="card-body card-btn">
-                      <button type="button" className="btn btn-primary" onClick={() => createBid(store.id)}>
+                      {print > 0 ? (
+                        <button type="button" className="btn btn-danger">
+                          Cancel
+                        </button>
+                      ) : (
+                        <button type="button" className="btn btn-primary" onClick={() => createBid(store.id)}>
+                          Bid
+                        </button>
+                      )}
+                      {/* <button type="button" className="btn btn-primary" onClick={() => createBid(store.id)}>
                         Bid
-                      </button>
+                      </button> */}
                     </div>
                   ) : (
                     <div className="card-body card-btn">
