@@ -15,6 +15,7 @@ import EditProject from "./components/admin/editproject";
 import UserPage from "./components/admin/userpage";
 import CreateUser from "./components/admin/createuser";
 import EditUser from "./components/admin/edituser";
+import CreateBid from "./components/teknisi/createbid";
 
 const Routers = () => {
   return (
@@ -31,15 +32,18 @@ const Routers = () => {
 
         <Route path="/profile/edit" component={EditProfile} />
         <Route path="/profile" component={Profile} />
+        <Route path="/active/bidproject/:id" component={CreateBid} />
         {/* End Teknisi */}
 
         {/* Start Admin */}
-        <Route path="/onprogress/bid" component={Bid} />
+        <Route path="/onprogress/bid/:pjid" component={Bid} />
+        <Route path="/onprogress/edit/:idpj" component={EditProject} />
+        <Route path="/active/bid/:pjid" component={Bid} />
         <Route path="/active/create" component={CreateProject} />
-        <Route path="/active/edit" component={EditProject} />
+        <Route path="/active/edit/:idpj" component={EditProject} />
         <Route exact path="/user" component={UserPage} />
         <Route path="/user/create" component={CreateUser} />
-        <Route path="/user/edit" component={EditUser} />
+        <Route path="/user/edit/:id" component={EditUser} />
         {/* End Admin */}
       </Switch>
     </Router>

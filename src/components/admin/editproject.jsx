@@ -1,6 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const EditProject = () => {
+const EditProject = (props) => {
+  let history = useHistory();
+  const role = useSelector((data) => data.user.role);
+  const token = useSelector((data) => data.user.token);
+  const idKey = props.match.params.idpj;
+  // const idKey = history.location.state.id;
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
+  }
   const [status, setStatus] = useState("");
   const [title, setTitle] = useState("");
   const [initprice, setInitPrice] = useState("");
@@ -8,11 +22,80 @@ const EditProject = () => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+
+  useEffect(() => {
+    fetch("https://web-lelang.herokuapp.com/api/getProject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idKey,
+      }),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((responseJson) => {
+        console.log(idKey);
+        console.log(responseJson);
+        setStatus(responseJson.status);
+        setTitle(responseJson.judul);
+        setInitPrice(responseJson.harga_awal);
+        setDesc(responseJson.deskripsi);
+        setLocation(responseJson.lokasi);
+        setHardware(responseJson.jenis);
+        setLastDay(responseJson.tanggal_akhir_bid);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const updateProject = () => {
+    fetch("https://web-lelang.herokuapp.com/api/updateProject", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idKey,
+        judul: title,
+        harga_awal: initprice,
+        lokasi: location,
+        deskripsi: desc,
+        jenis: hardware,
+        tanggal_akhir_bid: lastday,
+        status: status,
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(desc);
+          return response.json();
+        } else {
+          console.log(response.status);
+          throw new Error("Something went wrong on api server!");
+        }
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        history.push("/active");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="wrap">
       <div className="content-edit-project-page">
         <div className="cancel-side col-4">
-          <a href="/active">
+          <a href="#" onClick={history.goBack}>
             <img src="/img/icons8_cancel_127px_2.png" alt="cancel-button" />
           </a>
         </div>
@@ -26,9 +109,9 @@ const EditProject = () => {
                 <label className="input-group-text">Status</label>
                 <select className="form-select" id="role-dropdown" required onChange={(e) => setStatus(e.target.value)}>
                   <option selected>Choose...</option>
-                  <option value="Active">Active</option>
-                  <option value="On Progress">On Progress</option>
-                  <option value="Done">Done</option>
+                  <option value="active">Active</option>
+                  <option value="on progress">On Progress</option>
+                  <option value="done">Done</option>
                 </select>
               </div>
               <div className="mb-3">
@@ -47,11 +130,19 @@ const EditProject = () => {
                 <input type="text" className="form-control" id="hardware" placeholder="Hardware Type" required value={hardware} onChange={(e) => setHardware(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
+                <input type="date" className="form-control" id="lastday" placeholder="Last Bidding Date" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="/active" className="edit-project-btn">
+              <a
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to update this project?");
+                  if (confirmBox == true) {
+                    updateProject();
+                  }
+                }}
+                className="edit-project-btn"
+              >
                 <button type="button" className="btn btn-primary">
                   Update
                 </button>
