@@ -234,7 +234,7 @@ const HomeActive = () => {
                         }}
                         className="card-link"
                       >
-                        <button type="button" className="btn btn-warning">
+                        <button type="button" className="btn btn-warning mt-3">
                           Delete
                         </button>
                       </a>
