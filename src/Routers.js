@@ -22,7 +22,8 @@ const Routers = () => {
     <Router>
       <Switch>
         {/* Start All */}
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={HomeActive} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/active" component={HomeActive} />
         <Route exact path="/onprogress" component={HomeProgress} />
         <Route path="/done" component={HomeDone} />

@@ -14,7 +14,7 @@ const HomeActive = () => {
   const id = useSelector((data) => data.user.id);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/activeproject", {
