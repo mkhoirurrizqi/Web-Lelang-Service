@@ -12,7 +12,7 @@ const BidPage = (props) => {
   const idproject = props.match.params.pjid;
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role != "admin") {
     history.push("/active");

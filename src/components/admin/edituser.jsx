@@ -8,7 +8,7 @@ const EditUser = (props) => {
   const role = useSelector((data) => data.user.role);
   const idKey = props.match.params.id;
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role != "admin") {
     history.push("/active");

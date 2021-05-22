@@ -12,7 +12,7 @@ const UserPage = () => {
   const [userArray, setUserArray] = useState([]);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role != "admin") {
     history.push("/active");

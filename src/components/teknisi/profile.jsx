@@ -18,7 +18,7 @@ const Profile = () => {
   const role = useSelector((data) => data.user.role);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role === "admin") {
     history.push("/active");
@@ -63,7 +63,7 @@ const Profile = () => {
       console.log(response);
       if (response.status === 200) {
         dispatch(tokenidroleuser("", "", ""));
-        history.push("/");
+        history.push("/login");
         return response.json();
       } else {
         throw new Error("Something went wrong on api server!");

@@ -9,7 +9,7 @@ const CreateUser = () => {
   const id = useSelector((data) => data.user.id);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role != "admin") {
     history.push("/active");

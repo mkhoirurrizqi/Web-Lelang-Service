@@ -13,7 +13,7 @@ const HomeDone = (props) => {
   const token = useSelector((data) => data.user.token);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
 
   useEffect(() => {

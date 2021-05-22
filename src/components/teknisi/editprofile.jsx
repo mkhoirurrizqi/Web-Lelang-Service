@@ -17,7 +17,7 @@ const EditProfile = () => {
   const role = useSelector((data) => data.user.role);
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role === "admin") {
     history.push("/active");

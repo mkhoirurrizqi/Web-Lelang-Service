@@ -10,7 +10,7 @@ const EditProject = (props) => {
   // const idKey = history.location.state.id;
 
   if (!token) {
-    history.push("/");
+    history.push("/login");
   }
   if (role != "admin") {
     history.push("/active");
