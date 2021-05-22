@@ -44,8 +44,6 @@ const HomeActive = () => {
             },
           ]);
         });
-        console.log(responseJson);
-        console.log(storeArray);
       })
       .catch((error) => {
         console.error(error);
@@ -78,7 +76,6 @@ const HomeActive = () => {
               },
             ]);
           });
-          console.log("ini my bid", responseJson);
         })
         .catch((error) => {
           console.error(error);
@@ -115,8 +112,6 @@ const HomeActive = () => {
   };
 
   const editprojectPost = (id) => {
-    console.log("id edit: ", id);
-    // history.push({ pathname: `/active/edit/${id}` });
     history.push({
       pathname: "/active/edit/" + id,
       state: { id: id },
@@ -139,20 +134,14 @@ const HomeActive = () => {
         return response;
       })
       .then((responseJson) => {
-        console.log("resp:", responseJson);
-        history.go(0); //refresh page
+        history.go(0);
       })
       .catch((error) => {
         console.error("err", error);
       });
   };
   const bidderprojectPost = (id) => {
-    console.log("id edit: ", id);
     history.push({ pathname: `/onprogress/bid/${id}` });
-    // history.push({
-    //   pathname: "/onprogress/bid/"+id,
-    //   state:{  idproject:id }
-    // });
   };
   return (
     <div>
@@ -213,9 +202,6 @@ const HomeActive = () => {
                           Bid
                         </button>
                       )}
-                      {/* <button type="button" className="btn btn-primary" onClick={() => createBid(store.id)}>
-                        Bid
-                      </button> */}
                     </div>
                   ) : (
                     <div className="card-body card-btn">

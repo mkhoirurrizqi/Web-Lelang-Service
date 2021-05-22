@@ -17,14 +17,11 @@ const CreateUser = (props) => {
 
   const [hargatawar, setHargaTawar] = useState("");
   const projectKey = props.match.params.id;
+  const [errormessage, setErrorMessage] = useState(false);
 
-  console.log(token);
-  console.log("user_id", id);
-  console.log("project_id", projectKey);
-  console.log("hargatawar", hargatawar);
   const bidnow = () => {
     if (hargatawar == "") {
-      console.log("Ada field kosong");
+      setErrorMessage(true);
     } else {
       fetch("https://web-lelang.herokuapp.com/api/createBid", {
         method: "POST",
@@ -47,6 +44,7 @@ const CreateUser = (props) => {
           }
         })
         .then(() => {
+          setErrorMessage(false);
           history.push("/active");
         })
         .catch((error) => {
@@ -73,6 +71,13 @@ const CreateUser = (props) => {
                 <input type="text" className="form-control" id="nama" placeholder="Asked Price" required value={hargatawar} onChange={(e) => setHargaTawar(e.target.value)} />
               </div>
             </div>
+
+            {errormessage ? (
+              <p className="text-center" style={{ color: "red" }}>
+                Asked price field must be filled
+              </p>
+            ) : null}
+
             <div className="btn-wrap">
               <button
                 type="button"

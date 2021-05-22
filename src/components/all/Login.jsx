@@ -32,17 +32,12 @@ const Login = () => {
           if (result) {
             setLogin(true);
           }
-          console.log("res: ", result);
-          console.log("token: ", result.data.token);
-          console.log(result.data.user.email);
-          console.log("id: ", result.data.user.id);
           setToken(result.data.token);
           setRole(result.data.role);
           dispatch(tokenidroleuser(result.data.token, result.data.user.id, result.data.role));
           history.push("/active");
         })
         .catch((err) => {
-          console.log("err ", err);
           setLogin(false);
         });
     });

@@ -31,7 +31,6 @@ const UserPage = () => {
         return response.json();
       })
       .then((responseJson) => {
-        console.log(responseJson);
         setUserArray([]);
         responseJson.forEach((element) => {
           setUserArray((userArray) => [
@@ -69,8 +68,7 @@ const UserPage = () => {
         return response;
       })
       .then((responseJson) => {
-        console.log("resp:", responseJson);
-        history.go(0); //refresh page
+        history.go(0);
       })
       .catch((error) => {
         console.error("err", error);
@@ -78,7 +76,6 @@ const UserPage = () => {
   };
 
   const editUserPost = (editid) => {
-    console.log("id edit: ", editid);
     history.push({ pathname: `/user/edit/${editid}` });
   };
 

@@ -48,7 +48,6 @@ const Profile = () => {
   }, []);
 
   const logoutpost = () => {
-    console.log(token);
     fetch("https://web-lelang.herokuapp.com/api/logout", {
       method: "POST",
       headers: {
@@ -60,7 +59,6 @@ const Profile = () => {
         token: token,
       }),
     }).then((response) => {
-      console.log(response);
       if (response.status === 200) {
         dispatch(tokenidroleuser("", "", ""));
         history.push("/login");

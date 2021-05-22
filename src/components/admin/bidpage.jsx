@@ -34,7 +34,6 @@ const BidPage = (props) => {
       })
       .then((responseJson) => {
         setStoreArray([]);
-        console.log(responseJson);
         responseJson.forEach((element) => {
           setStoreArray((storeArray) => [
             ...storeArray,
@@ -71,7 +70,6 @@ const BidPage = (props) => {
         return response;
       })
       .then((responseJson) => {
-        console.log(responseJson);
         delallbid(idbid);
       })
       .catch((error) => {
@@ -94,7 +92,6 @@ const BidPage = (props) => {
         return response;
       })
       .then((responseJson) => {
-        console.log(responseJson);
         history.go(0);
       })
       .catch((error) => {
@@ -102,8 +99,6 @@ const BidPage = (props) => {
       });
   };
   const delbid = (idbid) => {
-    console.log(idbid);
-    console.log(token);
     fetch("https://web-lelang.herokuapp.com/api/delbidproject", {
       method: "POST",
       headers: {
@@ -116,11 +111,9 @@ const BidPage = (props) => {
       }),
     })
       .then(function (response) {
-        console.log(response);
         return response;
       })
       .then((responseJson) => {
-        console.log(responseJson);
         history.go(0);
       })
       .catch((error) => {

@@ -46,8 +46,6 @@ const HomeDone = (props) => {
             },
           ]);
         });
-        console.log(responseJson);
-        console.log(storeArray);
       })
       .catch((error) => {
         console.error(error);
@@ -75,11 +73,7 @@ const HomeDone = (props) => {
                       </p>
                       <p className="text-center project-location">Location : {store.lokasi}</p>
                       <p className="text-center project-hardware-type">Type : {store.jenis}</p>
-                      <p className="text-center project-technisian">
-                      Technisian : {store.name ?
-                        (store.name):("-")
-                        }
-                      </p>
+                      <p className="text-center project-technisian">Technisian : {store.name ? store.name : "-"}</p>
                     </div>
                   </div>
                 </div>

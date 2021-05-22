@@ -22,10 +22,11 @@ const CreateUser = () => {
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
   const [roleUser, setRoleUser] = useState("");
+  const [errormessage, setErrorMessage] = useState(false);
 
   const createUserPost = () => {
     if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "" || roleUser == "") {
-      console.log("Ada field kosong");
+      setErrorMessage(true);
     } else {
       fetch("https://web-lelang.herokuapp.com/api/register", {
         method: "POST",
@@ -48,12 +49,11 @@ const CreateUser = () => {
           if (response.status === 201) {
             return response.json();
           } else {
-            console.log(response.status);
             throw new Error("Something went wrong on api server!");
           }
         })
         .then((responseJson) => {
-          console.log(responseJson);
+          setErrorMessage(false);
           history.push("/user");
         })
         .catch((error) => {
@@ -103,6 +103,13 @@ const CreateUser = () => {
                 <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
+
+            {errormessage ? (
+              <p className="text-center" style={{ color: "red" }}>
+                All fields must be filled
+              </p>
+            ) : null}
+
             <div className="btn-wrap">
               <a
                 href="#"

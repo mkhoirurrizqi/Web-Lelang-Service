@@ -21,6 +21,7 @@ const EditUser = (props) => {
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
   const [emailKey, setEmailKey] = useState("");
+  const [errormessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/getusername", {
@@ -38,7 +39,6 @@ const EditUser = (props) => {
         return response.json();
       })
       .then((responseJson) => {
-        console.log(responseJson);
         setEmail(responseJson.email);
         setEmailKey(responseJson.email);
         setNama(responseJson.name);
@@ -53,7 +53,7 @@ const EditUser = (props) => {
 
   const updateUser = () => {
     if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "") {
-      console.log("Ada field kosong");
+      setErrorMessage(true);
     } else {
       fetch("https://web-lelang.herokuapp.com/api/edituser", {
         method: "POST",
@@ -80,6 +80,7 @@ const EditUser = (props) => {
           }
         })
         .then(() => {
+          setErrorMessage(false);
           history.push("/user");
         })
         .catch((error) => {
@@ -123,6 +124,12 @@ const EditUser = (props) => {
               <input type="password" className="form-control" id="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
             </div>
           </div>
+
+          {errormessage ? (
+            <p className="text-center" style={{ color: "red" }}>
+              All fields must be filled
+            </p>
+          ) : null}
 
           <div className="btn-wrap">
             <button

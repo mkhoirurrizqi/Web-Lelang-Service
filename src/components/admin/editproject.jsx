@@ -7,7 +7,6 @@ const EditProject = (props) => {
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
   const idKey = props.match.params.idpj;
-  // const idKey = history.location.state.id;
 
   if (!token) {
     history.push("/login");
@@ -22,6 +21,7 @@ const EditProject = (props) => {
   const [location, setLocation] = useState("");
   const [hardware, setHardware] = useState("");
   const [lastday, setLastDay] = useState("");
+  const [errormessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     fetch("https://web-lelang.herokuapp.com/api/getProject", {
@@ -39,9 +39,6 @@ const EditProject = (props) => {
         return response.json();
       })
       .then((responseJson) => {
-        console.log(idKey);
-        console.log(responseJson);
-        setStatus(responseJson.status);
         setTitle(responseJson.judul);
         setInitPrice(responseJson.harga_awal);
         setDesc(responseJson.deskripsi);
@@ -55,40 +52,42 @@ const EditProject = (props) => {
   }, []);
 
   const updateProject = () => {
-    fetch("https://web-lelang.herokuapp.com/api/updateProject", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: idKey,
-        judul: title,
-        harga_awal: initprice,
-        lokasi: location,
-        deskripsi: desc,
-        jenis: hardware,
-        tanggal_akhir_bid: lastday,
-        status: status,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(desc);
-          return response.json();
-        } else {
-          console.log(response.status);
-          throw new Error("Something went wrong on api server!");
-        }
+    if (status == "" || title == "" || initprice == "" || desc == "" || location == "" || hardware == "" || lastday == "") {
+      setErrorMessage(true);
+    } else {
+      fetch("https://web-lelang.herokuapp.com/api/updateProject", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: idKey,
+          judul: title,
+          harga_awal: initprice,
+          lokasi: location,
+          deskripsi: desc,
+          jenis: hardware,
+          tanggal_akhir_bid: lastday,
+          status: status,
+        }),
       })
-      .then((responseJson) => {
-        console.log(responseJson);
-        history.push("/active");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            throw new Error("Something went wrong on api server!");
+          }
+        })
+        .then((responseJson) => {
+          setErrorMessage(false);
+          history.push("/active");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   return (
@@ -133,6 +132,11 @@ const EditProject = (props) => {
                 <input type="date" className="form-control" id="lastday" placeholder="Last Bidding Date" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
+            {errormessage ? (
+              <p className="text-center" style={{ color: "red" }}>
+                All fields must be filled
+              </p>
+            ) : null}
             <div className="btn-wrap">
               <a
                 onClick={() => {

@@ -9,6 +9,7 @@ const EditProfile = () => {
   const [nim, setNIM] = useState("");
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
+  const [errormessage, setErrorMessage] = useState(false);
 
   let history = useHistory();
   const dispatch = useDispatch();
@@ -45,9 +46,10 @@ const EditProfile = () => {
         console.error(error);
       });
   }, []);
+
   const updateUser = () => {
     if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "") {
-      console.log("Ada field kosong");
+      setErrorMessage(true);
     } else {
       fetch("https://web-lelang.herokuapp.com/api/edituser", {
         method: "POST",
@@ -74,6 +76,7 @@ const EditProfile = () => {
           }
         })
         .then(() => {
+          setErrorMessage(false);
           history.push("/profile");
         })
         .catch((error) => {
@@ -114,6 +117,13 @@ const EditProfile = () => {
                 <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
+
+            {errormessage ? (
+              <p className="text-center" style={{ color: "red" }}>
+                All fields must be filled
+              </p>
+            ) : null}
+
             <div className="btn-wrap">
               <a
                 onClick={() => {

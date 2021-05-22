@@ -13,6 +13,7 @@ const CreateProject = () => {
   const role = useSelector((data) => data.user.role);
   const token = useSelector((data) => data.user.token);
   const id = useSelector((data) => data.user.id);
+  const [errormessage, setErrorMessage] = useState(false);
 
   if (!token) {
     history.push("/login");
@@ -21,10 +22,9 @@ const CreateProject = () => {
     history.push("/active");
   }
   const createprojectpost = () => {
-    if (status == "" || title == "" || initprice == "" || desc == "" || location == "" || hardware == "" || status == "" || lastday == "") {
-      console.log("Ada field kosong");
+    if (status == "" || title == "" || initprice == "" || desc == "" || location == "" || hardware == "" || lastday == "") {
+      setErrorMessage(true);
     } else {
-      console.log(lastday);
       fetch("https://web-lelang.herokuapp.com/api/createProject", {
         method: "POST",
         headers: {
@@ -44,17 +44,14 @@ const CreateProject = () => {
       })
         .then((response) => {
           if (response.status === 201) {
+            setErrorMessage(false);
             history.push("/active");
             return response.json();
           } else {
-            console.log(response.status);
             throw new Error("Something went wrong on api server!");
           }
         })
-        .then((responseJson) => {
-          console.log(responseJson);
-          //  props.navigation.navigate("StoreProduct");
-        })
+        .then((responseJson) => {})
         .catch((error) => {
           console.error(error);
         });
@@ -103,6 +100,13 @@ const CreateProject = () => {
                 <input type="date" className="form-control" id="lastday" placeholder="Last Bidding Day" required value={lastday} onChange={(e) => setLastDay(e.target.value)} />
               </div>
             </div>
+
+            {errormessage ? (
+              <p className="text-center" style={{ color: "red" }}>
+                All fields must be filled
+              </p>
+            ) : null}
+
             <div className="btn-wrap">
               <a
                 href="#"

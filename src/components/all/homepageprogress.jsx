@@ -47,8 +47,6 @@ const HomeProgress = () => {
             },
           ]);
         });
-        console.log(responseJson);
-        console.log(storeArray);
       })
       .catch((error) => {
         console.error(error);
@@ -56,16 +54,9 @@ const HomeProgress = () => {
   }, []);
 
   const bidderprojectPost = (id) => {
-    console.log("id edit: ", id);
     history.push({ pathname: `/onprogress/bid/${id}` });
-    // history.push({
-    //   pathname: "/onprogress/bid/"+id,
-    //   state:{  idproject:id }
-    // });
   };
   const editprojectPost = (id) => {
-    console.log("id edit: ", id);
-    // history.push({ pathname: `/active/edit/${id}` });
     history.push({
       pathname: "/onprogress/edit/" + id,
       state: { id: id },
@@ -88,8 +79,7 @@ const HomeProgress = () => {
         return response;
       })
       .then((responseJson) => {
-        console.log("resp:", responseJson);
-        history.go(0); //refresh page
+        history.go(0);
       })
       .catch((error) => {
         console.error("err", error);
@@ -103,7 +93,7 @@ const HomeProgress = () => {
           <div className="row">
             {storeArray.map((store, i) => {
               return (
-                <div className="card"  key={i}>
+                <div className="card" key={i}>
                   <div className="card-body">
                     <h3 className="text-center card-title project-title">L{store.judul}</h3>
                     <p className="card-text project-desc">{store.deskripsi}</p>
@@ -113,35 +103,30 @@ const HomeProgress = () => {
                       </p>
                       <p className="text-center project-location">Location : {store.lokasi}</p>
                       <p className="text-center project-hardware-type">Type : {store.jenis}</p>
-                      <p className="text-center project-technisian">
-                        Technisian : {store.name ?
-                        (store.name):("-")
-                        }
-                      </p>
+                      <p className="text-center project-technisian">Technisian : {store.name ? store.name : "-"}</p>
                     </div>
+                  </div>
+                  {role != "admin" ? (
+                    <label></label>
+                  ) : (
+                    <div className="card-body card-btn">
+                      <a href="" onClick={() => editprojectPost(store.id)} className="card-link">
+                        <button type="button" className="btn btn-primary mt-3">
+                          Edit
+                        </button>
+                      </a>
+                      <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
+                        <button type="button" className="btn btn-warning mt-3">
+                          Delete
+                        </button>
+                      </a>
+                      <a href="#" onClick={() => bidderprojectPost(store.id)} className="card-link">
+                        <button type="button" className="btn btn-secondary mt-3">
+                          Bidder
+                        </button>
+                      </a>
                     </div>
-                    {role != "admin" ? (
-            <label></label>
-          ) : (
-            <div className="card-body card-btn">
-            <a href="" onClick={() => editprojectPost(store.id)} className="card-link">
-              <button type="button" className="btn btn-primary mt-3">
-                Edit
-              </button>
-            </a>
-            <a href="#" onClick={() => deleteprojectPost(store.id)} className="card-link">
-              <button type="button" className="btn btn-warning mt-3">
-                Delete
-              </button>
-            </a>
-            <a href="#" onClick={() => bidderprojectPost(store.id)}className="card-link">
-              <button type="button" className="btn btn-secondary mt-3">
-                Bidder
-              </button>
-            </a>
-          </div>
-                    )}
-                 
+                  )}
                 </div>
               );
             })}
