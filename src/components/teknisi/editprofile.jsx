@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const EditProfile = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +9,78 @@ const EditProfile = () => {
   const [nim, setNIM] = useState("");
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
+
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+  const role = useSelector((data) => data.user.role);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role === "admin") {
+    history.push("/active");
+  }
+  useEffect(() => {
+    fetch("https://web-lelang.herokuapp.com/api/user", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((responseJson) => {
+        setNIM(responseJson.nim);
+        setNama(responseJson.name);
+        setEmail(responseJson.email);
+        setUsername(responseJson.username);
+        setNoHp(responseJson.nohp);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const updateUser = () => {
+    if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "") {
+      console.log("Ada field kosong");
+    } else {
+      fetch("https://web-lelang.herokuapp.com/api/edituser", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          name: nama,
+          username: username,
+          nohp: nohp,
+          email: email,
+          nim: nim,
+          password: password,
+        }),
+      })
+        .then(function (response) {
+          if (response.status === 201) {
+            return "Berhasil diupdate";
+          } else {
+            return "Gagal diupdate";
+          }
+        })
+        .then(() => {
+          history.push("/profile");
+        })
+        .catch((error) => {
+          console.error("err", error);
+        });
+    }
+  };
   return (
     <div className="wrap">
       <div className="content-update-page">
@@ -37,11 +111,19 @@ const EditProfile = () => {
                 <input type="text" className="form-control" id="phone" placeholder="Nomor Handphone" required value={nohp} onChange={(e) => setNoHp(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="/profile" className="update-btn">
+              <a
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to update your profile?");
+                  if (confirmBox == true) {
+                    updateUser();
+                  }
+                }}
+                className="update-btn"
+              >
                 <button type="button" className="btn btn-primary">
                   Update
                 </button>

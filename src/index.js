@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "bootstrap/js/src/collapse.js";
 import "bootstrap/dist/css/bootstrap.css";
 
 ReactDOM.render(

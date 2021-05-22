@@ -1,13 +1,67 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const CreateUser = () => {
+  let history = useHistory();
+  const role = useSelector((data) => data.user.role);
+  const token = useSelector((data) => data.user.token);
+  const id = useSelector((data) => data.user.id);
+
+  if (!token) {
+    history.push("/");
+  }
+  if (role != "admin") {
+    history.push("/active");
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nama, setNama] = useState("");
   const [nim, setNIM] = useState("");
   const [nohp, setNoHp] = useState("");
   const [username, setUsername] = useState("");
-  const [role, setRole] = useState("");
+  const [roleUser, setRoleUser] = useState("");
+
+  const createUserPost = () => {
+    if (email == "" || password == "" || nama == "" || nim == "" || nohp == "" || username == "" || roleUser == "") {
+      console.log("Ada field kosong");
+    } else {
+      fetch("https://web-lelang.herokuapp.com/api/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          role: roleUser,
+          name: nama,
+          username: username,
+          nohp: nohp,
+          email: email,
+          nim: nim,
+          password: password,
+        }),
+      })
+        .then((response) => {
+          if (response.status === 201) {
+            return response.json();
+          } else {
+            console.log(response.status);
+            throw new Error("Something went wrong on api server!");
+          }
+        })
+        .then((responseJson) => {
+          console.log(responseJson);
+          history.push("/user");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   return (
     <div className="wrap">
       <div className="content-create-user-page">
@@ -24,9 +78,9 @@ const CreateUser = () => {
             <div className="input-wrap">
               <div className="input-group mb-3">
                 <label className="input-group-text">Role</label>
-                <select className="form-select" id="role-dropdown" required onChange={(e) => setRole(e.target.value)}>
+                <select className="form-select" id="role-dropdown" required onChange={(e) => setRoleUser(e.target.value)}>
                   <option selected>Choose...</option>
-                  <option value="technisian">Technisian</option>
+                  <option value="teknisi">Technician</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>
@@ -46,11 +100,20 @@ const CreateUser = () => {
                 <input type="text" className="form-control" id="phone" placeholder="Phone Number" required value={nohp} onChange={(e) => setNoHp(e.target.value)} />
               </div>
               <div className="mb-3">
-                <input type="text" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" className="form-control" id="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
             <div className="btn-wrap">
-              <a href="/user" className="create-user-btn">
+              <a
+                href="#"
+                className="create-user-btn"
+                onClick={() => {
+                  const confirmBox = window.confirm("Are you sure you want to create new user?");
+                  if (confirmBox == true) {
+                    createUserPost();
+                  }
+                }}
+              >
                 <button type="button" className="btn btn-primary">
                   Create
                 </button>
